@@ -24,82 +24,86 @@ import java.time.Instant;
 @Slf4j
 public class SnowFlakeUidGenerator {
 
-	/**
-	 * 随机码占用的位数
-	 */
-	private static final byte SEQUENCE_BIT = 12;
-	/**
-	 * 机器标识占用的位数
-	 */
-	private static final byte MACHINE_BIT = 10;
+    /**
+     * 随机码占用的位数
+     */
+    private static final byte SEQUENCE_BIT = 12;
+    /**
+     * 机器标识占用的位数
+     */
+    private static final byte MACHINE_BIT = 10;
 
-	/**
-	 * Max value.
-	 */
-	private static final int MAX_MACHINE_NUM = -1 ^ (-1 << MACHINE_BIT);
-	private static final int MAX_SEQUENCE = -1 ^ (-1 << SEQUENCE_BIT);
+    /**
+     * Max value.
+     */
+    private static final int MAX_MACHINE_NUM = -1 ^ (-1 << MACHINE_BIT);
+    private static final int MAX_SEQUENCE = -1 ^ (-1 << SEQUENCE_BIT);
 
-	/**
-	 * Bit Left Offset.
-	 */
-	private static final byte MACHINE_LEFT = SEQUENCE_BIT;
-	private static final byte TIMESTAMP_LEFT = MACHINE_LEFT + MACHINE_BIT;
+    /**
+     * Bit Left Offset.
+     */
+    private static final byte MACHINE_LEFT = SEQUENCE_BIT;
+    private static final byte TIMESTAMP_LEFT = MACHINE_LEFT + MACHINE_BIT;
 
-	/**
-	 * 指定时间节点, 从epoch时间进行计算
-	 */
-	@Getter
-	private long startEpochMs;
-	@Getter
-	private int machineId;
+    /**
+     * 指定时间节点, 从epoch时间进行计算
+     */
+    @Getter
+    private long startEpochMs;
+    @Getter
+    private int machineId;
 
-	private long lastTimestamp = -1L;
-	private int sequence = 0;
+    private long lastTimestamp = -1L;
+    private int sequence = 0;
 
-	public SnowFlakeUidGenerator(Instant startTime, int machineId)
-			throws Exception {
-		this.startEpochMs = startTime.toEpochMilli();
-		this.machineId = machineId & MAX_MACHINE_NUM;
-		if (this.machineId == 0) {
-		    throw new Exception("Machine Id touch max value");
-		}
-	}
+    public SnowFlakeUidGenerator(Instant startTime, int machineId)
+            throws Exception {
+        this.startEpochMs = startTime.toEpochMilli();
+        this.machineId = machineId & MAX_MACHINE_NUM;
+        if (this.machineId == 0) {
+            throw new Exception("Machine Id touch max value");
+        }
+    }
 
-	public synchronized long nextId() {
-		long curTimestamp = System.currentTimeMillis();
-		if (curTimestamp < lastTimestamp) {
-			throw ExceptionBuilder.build(CoreErrorCodeEnum.GenerateUidError,
-					"Clock moved backwards.");
-		}
+    /**
+     * 
+     * @return unique id
+     */
+    public synchronized long nextId() {
+        long curTimestamp = System.currentTimeMillis();
+        if (curTimestamp < lastTimestamp) {
+            throw ExceptionBuilder.build(CoreErrorCodeEnum.GenerateUidError,
+                    "Clock moved backwards.");
+        }
 
-		if (curTimestamp == lastTimestamp) {
-			//相同毫秒内，序列号自增
-			sequence = (sequence + 1) & MAX_SEQUENCE;
-			//同一毫秒的序列数已经达到最大,　等待下一个时间段
-			if (sequence == 0L) {
-				curTimestamp = getNextMs();
-			}
-		} else {
-			//不同毫秒内，序列号置为0
-			sequence = 0;
-		}
+        if (curTimestamp == lastTimestamp) {
+            //相同毫秒内，序列号自增
+            sequence = (sequence + 1) & MAX_SEQUENCE;
+            //同一毫秒的序列数已经达到最大,　等待下一个时间段
+            if (sequence == 0L) {
+                curTimestamp = getNextMs();
+            }
+        } else {
+            //不同毫秒内，序列号置为0
+            sequence = 0;
+        }
 
-		lastTimestamp = curTimestamp;
-		return (curTimestamp - this.startEpochMs) << TIMESTAMP_LEFT
-			| this.machineId << MACHINE_LEFT
-			| sequence;
-	}
+        lastTimestamp = curTimestamp;
+        return (curTimestamp - this.startEpochMs) << TIMESTAMP_LEFT
+            | this.machineId << MACHINE_LEFT
+            | sequence;
+    }
 
-	private long getNextMs() {
-		long ms = Instant.now().toEpochMilli();
-		while (ms <= lastTimestamp) {
-			ms = Instant.now().toEpochMilli();
-		}
-		return ms;
-	}
+    private long getNextMs() {
+        long ms = Instant.now().toEpochMilli();
+        while (ms <= lastTimestamp) {
+            ms = Instant.now().toEpochMilli();
+        }
+        return ms;
+    }
 
-	public synchronized String nextIdByString() {
-		long id = nextId();
-		return Long.toString(id);
-	}
+    public synchronized String nextIdByString() {
+        long id = nextId();
+        return Long.toString(id);
+    }
 }

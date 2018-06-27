@@ -15,7 +15,7 @@ public class S2u2mCorsRegistration extends CorsRegistration {
     }
 
     @Override
-	public CorsConfiguration getCorsConfiguration() {
-		return super.getCorsConfiguration();
-	}
+    public CorsConfiguration getCorsConfiguration() {
+        return super.getCorsConfiguration();
+    }
 }

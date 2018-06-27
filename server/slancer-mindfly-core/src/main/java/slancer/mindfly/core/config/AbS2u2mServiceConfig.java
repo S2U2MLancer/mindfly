@@ -15,18 +15,22 @@ import slancer.mindfly.core.config.cors.S2u2mCorsRegistration;
 public abstract class AbS2u2mServiceConfig extends WebMvcConfigurerAdapter {
 
     @Override
-	public void addCorsMappings(CorsRegistry registry) {
-		// 配置CorsInterceptor的CORS参数
-		S2u2mCorsConfig.config(registry.addMapping("/**"));
-	}
+    public void addCorsMappings(CorsRegistry registry) {
+        // 配置CorsInterceptor的CORS参数
+        S2u2mCorsConfig.config(registry.addMapping("/**"));
+    }
 
-	@Bean
-	public CorsFilter corsFilter() {
+    /**
+     *
+     * @return cors filter
+     */
+    @Bean
+    public CorsFilter corsFilter() {
         S2u2mCorsRegistration registration = new S2u2mCorsRegistration("/**");
         S2u2mCorsConfig.config(registration);
 
-    	UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-		source.registerCorsConfiguration("/**", registration.getCorsConfiguration());
-		return new CorsFilter(source);
-	}
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", registration.getCorsConfiguration());
+        return new CorsFilter(source);
+    }
 }
