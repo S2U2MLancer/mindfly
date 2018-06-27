@@ -1,0 +1,6 @@
+---
+engines:
+  checkstyle:
+    enable: true
+    base_sub_dir: server
+    language: java
