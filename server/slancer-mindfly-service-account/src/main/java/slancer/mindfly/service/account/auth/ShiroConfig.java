@@ -55,7 +55,7 @@ public class ShiroConfig {
         chainMap.put("/account/**/reg", "anon");
         chainMap.put("/user/**", UserTokenFilter.class.getName());
 
-         chainMap.put("/**", "anon");
+        chainMap.put("/**", "anon");
 
         factoryBean.setFilterChainDefinitionMap(chainMap);
         // factoryBean.setUnauthorizedUrl("/unauth");
@@ -72,7 +72,8 @@ public class ShiroConfig {
     }
 
     @Bean
-    public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(DefaultWebSecurityManager securityManager) {
+    public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(
+            DefaultWebSecurityManager securityManager) {
         AuthorizationAttributeSourceAdvisor advisor = new AuthorizationAttributeSourceAdvisor();
         advisor.setSecurityManager(securityManager);
         return advisor;

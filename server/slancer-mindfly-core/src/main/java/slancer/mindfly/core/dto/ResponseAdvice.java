@@ -17,23 +17,22 @@ public class ResponseAdvice implements ResponseBodyAdvice<Object> {
 
     @Override
     public boolean supports(MethodParameter methodParameter,
-                            Class<? extends HttpMessageConverter<?>> aClass) {
+                            Class<? extends HttpMessageConverter<?>> convertClass) {
         if (String.class.isAssignableFrom(methodParameter.getMethod().getReturnType())) {
             return false;
         }
 
         return methodParameter.getMethod().isAnnotationPresent(S2u2mResponseBody.class);
-   }
+    }
 
     @Override
     public Object beforeBodyWrite(Object o, MethodParameter methodParameter,
                                   MediaType mediaType,
-                                  Class<? extends HttpMessageConverter<?>> aClass,
+                                  Class<? extends HttpMessageConverter<?>> convertClass,
                                   ServerHttpRequest serverHttpRequest,
                                   ServerHttpResponse serverHttpResponse) {
         Class<?> retClass = methodParameter.getMethod().getReturnType();
-        return retClass.equals(Void.TYPE) ?
-                ResponseBuilder.nothing()
+        return retClass.equals(Void.TYPE) ? ResponseBuilder.nothing()
                 : ResponseBuilder.build(o, retClass);
     }
 }

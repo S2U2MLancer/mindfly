@@ -15,6 +15,7 @@ public class UserTokenAuth implements AuthenticationToken {
 
     @Getter
     private String token;
+
     public UserTokenAuth(String token) {
         this.token = token;
     }

@@ -16,8 +16,6 @@ public class IndexControllerTest extends AbS2u2mControllerTest {
         mockMvc.perform(get("/")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-//                .andDo(rst -> System.out.println(rst.getResponse().getContentAsString()));
                 .andDo(documentAPI("pingpong"));
-
     }
 }

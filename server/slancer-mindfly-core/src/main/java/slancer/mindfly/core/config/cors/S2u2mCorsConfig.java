@@ -11,13 +11,16 @@ import org.springframework.web.servlet.config.annotation.CorsRegistration;
  */
 public class S2u2mCorsConfig {
 
+    /**
+     * Config cors registration
+     */
     public static void config(CorsRegistration corsRegistration) {
-		corsRegistration
-			.allowedOrigins("*")
-			.allowedMethods("*")
-			.allowedHeaders("*")
-			.exposedHeaders(HttpHeaders.SET_COOKIE)
-			.allowCredentials(true)
-			.maxAge(3600);
-	}
+        corsRegistration
+            .allowedOrigins("*")
+            .allowedMethods("*")
+            .allowedHeaders("*")
+            .exposedHeaders(HttpHeaders.SET_COOKIE)
+            .allowCredentials(true)
+            .maxAge(3600);
+    }
 }

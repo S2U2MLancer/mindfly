@@ -20,6 +20,7 @@ import java.util.Date;
 @Accessors(chain = true)
 public class UserEntity {
     private String id;
+    private String password;
     private String nickName;
     private GenderEnum gender = GenderEnum.Unknown;
     private Date birthday;
@@ -27,4 +28,5 @@ public class UserEntity {
     private Date createTime = Date.from(Instant.now());
     private Date updateTime;
     private Boolean deleteFlag = false;
+
 }
