@@ -3,13 +3,11 @@ package slancer.mindfly.service.account.controller.user;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import slancer.mindfly.core.dto.S2u2mResponseBody;
 import slancer.mindfly.service.account.controller.user.dto.UserInfoDTO;
 import slancer.mindfly.service.account.entity.UserEntity;
 import slancer.mindfly.service.account.service.UserService;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
  * class UserController
