@@ -16,3 +16,4 @@ public interface IAccountService<LT, RT, AT> {
 
     void bind(AT account, UserEntity user);
 }
+
