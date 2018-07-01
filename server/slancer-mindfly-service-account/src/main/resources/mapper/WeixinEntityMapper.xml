@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="slancer.mindfly.service.account.dao.WeichatDao">
+    <resultMap id="WeixinEntityMap" type="WeichatAccountEntity">
+        <id column="user_id" jdbcType="BIGINT" property="userId"/>
+        <result column="open_id" jdbcType="VARCHAR" property="openId"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+    </resultMap>
+
+    <sql id="all_fields">
+        user_id, open_id, create_time
+    </sql>
+
+    <insert id="create" parameterType="WeichatAccountEntity">
+        insert into weichat_account (
+        <include refid="all_fields"/>
+        ) values (
+        #{userId}, #{openId},CURRENT_TIMESTAMP 
+        )
+    </insert>
+
+    <select id="getById" resultMap="WeichatAccountEntity">
+        select <include refid="all_fields" />
+        from weichat_account
+        where user_id=#{userId}
+    </select>
+
+</mapper>
