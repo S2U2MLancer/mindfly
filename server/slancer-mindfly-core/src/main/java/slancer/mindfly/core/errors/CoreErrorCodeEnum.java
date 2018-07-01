@@ -26,6 +26,7 @@ public enum CoreErrorCodeEnum implements IErrorCodeEnum {
     public int getCode() {
         return this.code;
     }
+
     private int code;
     CoreErrorCodeEnum(int code) {
         this.code = code;

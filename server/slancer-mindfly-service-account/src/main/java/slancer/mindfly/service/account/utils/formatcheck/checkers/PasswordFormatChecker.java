@@ -1,11 +1,9 @@
 package slancer.mindfly.service.account.utils.formatcheck.checkers;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import slancer.mindfly.service.account.utils.formatcheck.IStringFormatChecker;
 import slancer.mindfly.service.account.utils.formatcheck.property.PasswordFormatCheckProperty;
-import slancer.mindfly.service.account.utils.formatcheck.IStringFormatChecker;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
