@@ -6,7 +6,7 @@ import lombok.Setter;
 @Setter
 @Getter
 public class WeichatAuthRequstDto {
-	private String appid;
+	private String appId;
 	private String scope;
 	private String state;
 }

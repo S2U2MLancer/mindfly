@@ -6,10 +6,10 @@ import lombok.Setter;
 @Getter
 @Setter
 public class WeichatGetTokenResponseDto {
-	private String access_token;
-	private String expires_in;
-	private String refresh_token;
-	private String openid;
+	private String accessToken;
+	private String expiresIn;
+	private String refreshToken;
+	private String openId;
 	private String scope;
 	private String unionid;
 }

@@ -6,7 +6,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class WeichatGetTokenRequestDto {
-	private String appid;
+	private String appId;
 	private String secret;
 	private String code;
 	private String grant_type;
