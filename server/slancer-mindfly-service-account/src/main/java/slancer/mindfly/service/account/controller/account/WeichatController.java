@@ -14,6 +14,7 @@ import slancer.mindfly.service.account.controller.account.dto.WeichatAuthRequstD
 import slancer.mindfly.service.account.controller.account.dto.WeichatAuthResponseDto;
 import slancer.mindfly.service.account.controller.account.dto.WeichatGetTokenRequestDto;
 import slancer.mindfly.service.account.controller.account.dto.WeichatLoginDto;
+import slancer.mindfly.service.account.entity.account.WeiChatAccountEntity;
 import slancer.mindfly.service.account.service.account.WeichatService;
 
 @RestController

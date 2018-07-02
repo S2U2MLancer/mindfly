@@ -2,6 +2,7 @@ package slancer.mindfly.service.account.service.account.weichataccount;
 
 import slancer.mindfly.service.account.controller.account.dto.WeichatLoginDto;
 import slancer.mindfly.service.account.entity.UserEntity;
+import slancer.mindfly.service.account.entity.account.WeiChatAccountEntity;
 import slancer.mindfly.service.account.service.account.IAccountService;
 
 public class WeiChatAccountService implements IAccountService<WeiChatAccountEntity,WeiChatAccountEntity,WeichatLoginDto> {

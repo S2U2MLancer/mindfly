@@ -1,5 +1,7 @@
 package slancer.mindfly.service.account.dao;
 
+import slancer.mindfly.service.account.entity.account.WeiChatAccountEntity;
+
 /**
  * interface UserDAO
  *

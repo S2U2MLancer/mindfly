@@ -13,6 +13,7 @@ import slancer.mindfly.service.account.controller.account.dto.WeichatAuthRespons
 import slancer.mindfly.service.account.controller.account.dto.WeichatGetTokenRequestDto;
 import slancer.mindfly.service.account.controller.account.dto.WeichatGetTokenResponseDto;
 import slancer.mindfly.service.account.dao.WeichatDao;
+import slancer.mindfly.service.account.entity.account.WeiChatAccountEntity;
 
 /**
  * class UserService
