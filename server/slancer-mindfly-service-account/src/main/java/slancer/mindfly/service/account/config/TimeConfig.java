@@ -1,8 +1,8 @@
 package slancer.mindfly.service.account.config;
 
-import org.springframework.context.annotation.Configuration;
-
 import java.util.TimeZone;
+
+import org.springframework.context.annotation.Configuration;
 
 /**
  * class TimeConfig
@@ -12,12 +12,11 @@ import java.util.TimeZone;
  */
 @Configuration
 public class TimeConfig {
-    public static final String DefaultZone = "GMT+8";
-    public static final String DateFormat = "yyyy-MM-dd HH:mm:ss";
+	public static final String DefaultZone = "GMT+8";
+	public static final String DateFormat = "yyyy-MM-dd HH:mm:ss";
 
-    static {
-        TimeZone.setDefault(TimeZone.getTimeZone(DefaultZone));
-    }
-
+	static {
+		TimeZone.setDefault(TimeZone.getTimeZone(DefaultZone));
+	}
 
 }

@@ -1,14 +1,12 @@
 package slancer.mindfly.service.account;
 
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
-import org.springframework.boot.context.embedded.LocalServerPort;
 import org.springframework.context.annotation.Profile;
-import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * class StartUpInfoRunner
@@ -21,23 +19,23 @@ import org.springframework.stereotype.Component;
 @Component
 class StartUpInfoRunner implements ApplicationRunner {
 
-    @Value("${server.port}")
-    private int serverPort;
+	@Value("${server.port}")
+	private int serverPort;
 
-    @Value("${mindfly.druid.admin.user}")
-    private String adminUser;
-    @Value("${mindfly.druid.admin.pwd}")
-    private String adminPassword;
+	@Value("${mindfly.druid.admin.user}")
+	private String adminUser;
+	@Value("${mindfly.druid.admin.pwd}")
+	private String adminPassword;
 
-    @Override
-    public void run(ApplicationArguments args) throws Exception {
-        // swagger url
-        String swaggerUrl = String.format("http://localhost:%s/swagger-ui.html", serverPort);
-        log.info(swaggerUrl);
+	@Override
+	public void run(ApplicationArguments args) throws Exception {
+		// swagger url
+		String swaggerUrl = String.format("http://localhost:%s/swagger-ui.html", serverPort);
+		log.info(swaggerUrl);
 
-        // druid url
-        String druidUrl = String.format("http://localhost:%s/druid/index.html, user: %s, password: %s",
-                serverPort, adminUser, adminPassword);
-        log.info(druidUrl);
-    }
+		// druid url
+		String druidUrl = String.format("http://localhost:%s/druid/index.html, user: %s, password: %s",
+			serverPort, adminUser, adminPassword);
+		log.info(druidUrl);
+	}
 }

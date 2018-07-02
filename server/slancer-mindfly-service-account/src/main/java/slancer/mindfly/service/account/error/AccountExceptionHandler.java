@@ -1,6 +1,7 @@
 package slancer.mindfly.service.account.error;
 
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+
 import slancer.mindfly.core.exception.S2u2mSpringExceptionHandler;
 
 /**

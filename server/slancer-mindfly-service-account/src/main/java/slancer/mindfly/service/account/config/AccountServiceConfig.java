@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
+
 import slancer.mindfly.core.config.AbS2u2mServiceConfig;
 import slancer.mindfly.service.account.auth.argresolver.UserEntityMethodArgResolver;
 
@@ -16,9 +17,9 @@ import slancer.mindfly.service.account.auth.argresolver.UserEntityMethodArgResol
 @Configuration
 public class AccountServiceConfig extends AbS2u2mServiceConfig {
 
-    @Override
-    public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
-        super.addArgumentResolvers(argumentResolvers);
-        argumentResolvers.add(new UserEntityMethodArgResolver());
-    }
+	@Override
+	public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
+		super.addArgumentResolvers(argumentResolvers);
+		argumentResolvers.add(new UserEntityMethodArgResolver());
+	}
 }

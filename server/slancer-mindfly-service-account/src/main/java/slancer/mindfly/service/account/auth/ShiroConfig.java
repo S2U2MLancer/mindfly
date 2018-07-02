@@ -1,5 +1,13 @@
 package slancer.mindfly.service.account.auth;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.Filter;
+
 import org.apache.shiro.realm.Realm;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
@@ -8,11 +16,9 @@ import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreato
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
 import slancer.mindfly.service.account.auth.realm.UserRealm;
 import slancer.mindfly.service.account.auth.realm.UserTokenFilter;
-
-import javax.servlet.Filter;
-import java.util.*;
 
 /**
  * @author Amos Xia
@@ -21,61 +27,61 @@ import java.util.*;
 @Configuration
 public class ShiroConfig {
 
-    @Autowired
-    private UserRealm userRealm;
+	@Autowired
+	private UserRealm userRealm;
 
-    @Bean
-    public DefaultWebSecurityManager securityManager() {
-        DefaultWebSecurityManager sm = new DefaultWebSecurityManager();
+	@Bean
+	public DefaultWebSecurityManager securityManager() {
+		DefaultWebSecurityManager sm = new DefaultWebSecurityManager();
 
-        // set realms
-        List<Realm> realms = new ArrayList<>();
-        realms.add(userRealm);
+		// set realms
+		List<Realm> realms = new ArrayList<>();
+		realms.add(userRealm);
 
-        sm.setRealms(realms);
-        return sm;
-    }
+		sm.setRealms(realms);
+		return sm;
+	}
 
-    @Bean
-    public ShiroFilterFactoryBean shiroFilter(DefaultWebSecurityManager sm) {
-        ShiroFilterFactoryBean factoryBean = new ShiroFilterFactoryBean();
-        factoryBean.setSecurityManager(sm);
+	@Bean
+	public ShiroFilterFactoryBean shiroFilter(DefaultWebSecurityManager sm) {
+		ShiroFilterFactoryBean factoryBean = new ShiroFilterFactoryBean();
+		factoryBean.setSecurityManager(sm);
 
-        // filter
-        Map<String, Filter> filters = new HashMap<>();
-        filters.put(UserTokenFilter.class.getName(), new UserTokenFilter());
+		// filter
+		Map<String, Filter> filters = new HashMap<>();
+		filters.put(UserTokenFilter.class.getName(), new UserTokenFilter());
 
-        factoryBean.setFilters(filters);
+		factoryBean.setFilters(filters);
 
-        // filter chain
-        Map<String, String> chainMap = new LinkedHashMap<>();
+		// filter chain
+		Map<String, String> chainMap = new LinkedHashMap<>();
 
-        // user filters
-        chainMap.put("/account/**/login", "anon");
-        chainMap.put("/account/**/reg", "anon");
-        chainMap.put("/user/**", UserTokenFilter.class.getName());
+		// user filters
+		chainMap.put("/account/**/login", "anon");
+		chainMap.put("/account/**/reg", "anon");
+		chainMap.put("/user/**", UserTokenFilter.class.getName());
 
-        chainMap.put("/**", "anon");
+		chainMap.put("/**", "anon");
 
-        factoryBean.setFilterChainDefinitionMap(chainMap);
-        // factoryBean.setUnauthorizedUrl("/unauth");
+		factoryBean.setFilterChainDefinitionMap(chainMap);
+		// factoryBean.setUnauthorizedUrl("/unauth");
 
-        return factoryBean;
-    }
+		return factoryBean;
+	}
 
-    // make shiro aop enable
-    @Bean
-    public DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator() {
-        DefaultAdvisorAutoProxyCreator proxyCreator = new DefaultAdvisorAutoProxyCreator();
-        proxyCreator.setProxyTargetClass(true);
-        return proxyCreator;
-    }
+	// make shiro aop enable
+	@Bean
+	public DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator() {
+		DefaultAdvisorAutoProxyCreator proxyCreator = new DefaultAdvisorAutoProxyCreator();
+		proxyCreator.setProxyTargetClass(true);
+		return proxyCreator;
+	}
 
-    @Bean
-    public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(
-            DefaultWebSecurityManager securityManager) {
-        AuthorizationAttributeSourceAdvisor advisor = new AuthorizationAttributeSourceAdvisor();
-        advisor.setSecurityManager(securityManager);
-        return advisor;
-    }
+	@Bean
+	public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(
+		DefaultWebSecurityManager securityManager) {
+		AuthorizationAttributeSourceAdvisor advisor = new AuthorizationAttributeSourceAdvisor();
+		advisor.setSecurityManager(securityManager);
+		return advisor;
+	}
 }
