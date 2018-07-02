@@ -10,10 +10,10 @@ import slancer.mindfly.service.account.entity.UserEntity;
  */
 public interface IAccountService<LT, RT, AT> {
 
-    UserEntity reg(RT info);
+	UserEntity reg(RT info);
 
-    UserEntity login(LT info);
+	UserEntity login(LT info);
 
-    void bind(AT account, UserEntity user);
+	void bind(AT account, UserEntity user);
 }
 

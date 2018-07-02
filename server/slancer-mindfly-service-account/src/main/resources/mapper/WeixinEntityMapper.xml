@@ -19,7 +19,7 @@
         )
     </insert>
 
-    <select id="getById" resultMap="WeichatAccountEntity">
+    <select id="getById" resultMap="WeixinEntityMap">
         select <include refid="all_fields" />
         from weichat_account
         where user_id=#{userId}

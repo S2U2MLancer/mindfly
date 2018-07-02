@@ -5,7 +5,8 @@ import slancer.mindfly.service.account.entity.UserEntity;
 import slancer.mindfly.service.account.entity.account.WeiChatAccountEntity;
 import slancer.mindfly.service.account.service.account.IAccountService;
 
-public class WeiChatAccountService implements IAccountService<WeiChatAccountEntity,WeiChatAccountEntity,WeichatLoginDto> {
+public class WeiChatAccountService
+	implements IAccountService<WeiChatAccountEntity, WeiChatAccountEntity, WeichatLoginDto> {
 
 	@Override
 	public UserEntity reg(WeiChatAccountEntity info) {

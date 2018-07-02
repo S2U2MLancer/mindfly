@@ -1,11 +1,11 @@
 package slancer.mindfly.service.account.controller.user.dto;
 
+import java.util.Date;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 import slancer.mindfly.service.account.enums.GenderEnum;
-
-import java.util.Date;
 
 /**
  * class UserInfoDTO
@@ -17,7 +17,7 @@ import java.util.Date;
 @Setter
 @Accessors(chain = true)
 public class UserInfoDTO {
-    private String nickName;
-    private GenderEnum gender;
-    private Date birthday;
+	private String nickName;
+	private GenderEnum gender;
+	private Date birthday;
 }

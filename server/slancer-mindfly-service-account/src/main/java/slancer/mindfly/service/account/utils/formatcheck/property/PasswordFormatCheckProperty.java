@@ -1,10 +1,11 @@
 package slancer.mindfly.service.account.utils.formatcheck.property;
 
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * class UserNameFormatCheckProperty
@@ -18,6 +19,6 @@ import org.springframework.context.annotation.PropertySource;
 @Getter
 @Setter
 public class PasswordFormatCheckProperty {
-    private int minLength;
-    private int maxLength;
+	private int minLength;
+	private int maxLength;
 }

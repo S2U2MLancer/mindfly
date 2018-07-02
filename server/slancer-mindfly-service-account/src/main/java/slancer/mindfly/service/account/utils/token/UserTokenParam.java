@@ -13,5 +13,5 @@ import slancer.mindfly.service.account.entity.UserEntity;
 @Getter
 @Setter
 public class UserTokenParam {
-    private UserEntity user;
+	private UserEntity user;
 }

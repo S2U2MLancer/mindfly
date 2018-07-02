@@ -9,18 +9,18 @@ import slancer.mindfly.core.enumhandler.IIntEnum;
  * @date 2018/5/19
  */
 public enum GenderEnum implements IIntEnum {
-    Unknown(0),
-    Male(1),
-    Female(2),;
+	Unknown(0),
+	Male(1),
+	Female(2),;
 
-    @Override
-    public int getValue() {
-        return this.value;
-    }
+	@Override
+	public int getValue() {
+		return this.value;
+	}
 
-    private int value;
+	private int value;
 
-    GenderEnum(int value) {
-        this.value = value;
-    }
+	GenderEnum(int value) {
+		this.value = value;
+	}
 }

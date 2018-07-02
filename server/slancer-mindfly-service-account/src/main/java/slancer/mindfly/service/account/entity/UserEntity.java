@@ -1,13 +1,12 @@
 package slancer.mindfly.service.account.entity;
 
+import java.time.Instant;
+import java.util.Date;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 import slancer.mindfly.service.account.enums.GenderEnum;
-import slancer.mindfly.service.account.enums.GenderEnum;
-
-import java.time.Instant;
-import java.util.Date;
 
 /**
  * class UserEntity
@@ -19,14 +18,14 @@ import java.util.Date;
 @Setter
 @Accessors(chain = true)
 public class UserEntity {
-    private String id;
-    private String password;
-    private String nickName;
-    private GenderEnum gender = GenderEnum.Unknown;
-    private Date birthday;
+	private String id;
+	private String password;
+	private String nickName;
+	private GenderEnum gender = GenderEnum.Unknown;
+	private Date birthday;
 
-    private Date createTime = Date.from(Instant.now());
-    private Date updateTime;
-    private Boolean deleteFlag = false;
+	private Date createTime = Date.from(Instant.now());
+	private Date updateTime;
+	private Boolean deleteFlag = false;
 
 }

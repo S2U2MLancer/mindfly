@@ -1,11 +1,11 @@
 package slancer.mindfly.service.account.config;
 
+import java.text.SimpleDateFormat;
+import java.util.TimeZone;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-
-import java.text.SimpleDateFormat;
-import java.util.TimeZone;
 
 /**
  * class JsonMessageConverterConfig
@@ -16,18 +16,18 @@ import java.util.TimeZone;
 @Configuration
 public class JsonMessageConverterConfig {
 
-    @Bean
-    public MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter() {
-        MappingJackson2HttpMessageConverter converter =
-                new MappingJackson2HttpMessageConverter();
+	@Bean
+	public MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter() {
+		MappingJackson2HttpMessageConverter converter =
+			new MappingJackson2HttpMessageConverter();
 
-        TimeZone timeZone = TimeZone.getTimeZone(TimeConfig.DefaultZone);
-        SimpleDateFormat dateFormat = new SimpleDateFormat(TimeConfig.DateFormat);
-        dateFormat.setTimeZone(timeZone);
-        dateFormat.applyPattern(TimeConfig.DateFormat);
+		TimeZone timeZone = TimeZone.getTimeZone(TimeConfig.DefaultZone);
+		SimpleDateFormat dateFormat = new SimpleDateFormat(TimeConfig.DateFormat);
+		dateFormat.setTimeZone(timeZone);
+		dateFormat.applyPattern(TimeConfig.DateFormat);
 
-        converter.getObjectMapper().setTimeZone(timeZone);
-        converter.getObjectMapper().setDateFormat(dateFormat);
-        return converter;
-    }
+		converter.getObjectMapper().setTimeZone(timeZone);
+		converter.getObjectMapper().setDateFormat(dateFormat);
+		return converter;
+	}
 }

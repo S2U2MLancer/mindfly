@@ -7,5 +7,5 @@ package slancer.mindfly.service.account.utils.encrypt.password;
  * @date 2018/6/24
  */
 public interface IPasswordEncrypt {
-    String encrypt(String orig);
+	String encrypt(String orig);
 }

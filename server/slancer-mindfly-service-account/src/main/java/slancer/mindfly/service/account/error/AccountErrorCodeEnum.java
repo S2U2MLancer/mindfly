@@ -11,27 +11,26 @@ import slancer.mindfly.core.errors.IErrorCodeEnum;
  */
 public enum AccountErrorCodeEnum implements IErrorCodeEnum {
 
-    //
-    UnAuth(50),
-    NotSetUserEntityDuringAuth(51),
+	//
+	UnAuth(50),
+	NotSetUserEntityDuringAuth(51),
 
-    // user
-    UserNotExisted(300)
-    ;
+	// user
+	UserNotExisted(300);
 
-    private int code;
+	private int code;
 
-    AccountErrorCodeEnum(int code) {
-        this.code = code;
-    }
+	AccountErrorCodeEnum(int code) {
+		this.code = code;
+	}
 
-    @Override
-    public int getTypeCode() {
-        return ServiceErrorTypeEnum.AccountService.getValue();
-    }
+	@Override
+	public int getTypeCode() {
+		return ServiceErrorTypeEnum.AccountService.getValue();
+	}
 
-    @Override
-    public int getCode() {
-        return this.code;
-    }
+	@Override
+	public int getCode() {
+		return this.code;
+	}
 }

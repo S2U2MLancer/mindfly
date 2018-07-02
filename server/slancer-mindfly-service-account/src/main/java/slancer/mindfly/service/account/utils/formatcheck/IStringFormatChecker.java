@@ -1,5 +1,5 @@
 package slancer.mindfly.service.account.utils.formatcheck;
 
 public interface IStringFormatChecker {
-    boolean check(String data);
+	boolean check(String data);
 }

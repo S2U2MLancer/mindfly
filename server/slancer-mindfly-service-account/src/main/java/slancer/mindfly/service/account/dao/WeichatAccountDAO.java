@@ -10,7 +10,7 @@ import slancer.mindfly.service.account.entity.account.WeiChatAccountEntity;
  */
 public interface WeichatAccountDAO {
 
-    int insert(WeiChatAccountEntity entity);
+	int insert(WeiChatAccountEntity entity);
 
-    WeiChatAccountEntity getById(String openUid);
+	WeiChatAccountEntity getById(String openUid);
 }

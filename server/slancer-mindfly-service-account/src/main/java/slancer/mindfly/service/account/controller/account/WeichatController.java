@@ -20,34 +20,35 @@ import slancer.mindfly.service.account.service.account.WeichatService;
 @RestController
 @RequestMapping("/weichat")
 public class WeichatController {
+
 	@Autowired
-    private WeichatService weichatService;
-
-    @S2u2mResponseBody
-    @PostMapping(value = "/login/request")
-    public WeichatAuthResponseDto loginRequest(@RequestBody WeichatAuthRequstDto user) {
-        return new WeichatAuthResponseDto();
-    }
-
-    @S2u2mResponseBody
-    @PostMapping(value = "/auth")
-    @ApiImplicitParams({
-            @ApiImplicitParam(paramType = "header", name = "token",
-                    required = true, dataType = "string")
-    })
-    public void updateUserInfo(@RequestBody WeichatGetTokenRequestDto requestDto) {
-        weichatService.auth(requestDto);
-    }
+	private WeichatService weichatService;
 
 	@S2u2mResponseBody
-    @PostMapping(value = "/login")
-    @ApiImplicitParams({
-            @ApiImplicitParam(paramType = "header", name = "token",
-                    required = true, dataType = "string")
-    })
-    public UserTokenAuth login(@RequestBody WeichatLoginDto requestDto) {
+	@PostMapping(value = "/login/request")
+	public WeichatAuthResponseDto loginRequest(@RequestBody WeichatAuthRequstDto user) {
+		return new WeichatAuthResponseDto();
+	}
+
+	@S2u2mResponseBody
+	@PostMapping(value = "/auth")
+	@ApiImplicitParams({
+		@ApiImplicitParam(paramType = "header", name = "token",
+			required = true, dataType = "string")
+	})
+	public void updateUserInfo(@RequestBody WeichatGetTokenRequestDto requestDto) {
+		weichatService.auth(requestDto);
+	}
+
+	@S2u2mResponseBody
+	@PostMapping(value = "/login")
+	@ApiImplicitParams({
+		@ApiImplicitParam(paramType = "header", name = "token",
+			required = true, dataType = "string")
+	})
+	public UserTokenAuth login(@RequestBody WeichatLoginDto requestDto) {
 		WeiChatAccountEntity entity = new WeiChatAccountEntity()
 			.setOpenId(requestDto.getOpenId());
 		return weichatService.login(entity);
-    }
+	}
 }

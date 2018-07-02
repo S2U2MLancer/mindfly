@@ -24,29 +24,28 @@ import slancer.mindfly.service.account.entity.account.WeiChatAccountEntity;
 @Service
 public class WeichatService {
 
-    @Autowired
-    private WeichatDao weichatDao;
+	@Autowired
+	private WeichatDao weichatDao;
 
-    @Autowired
-    SnowFlakeUidGenerator uidGenerator;
+	@Autowired
+	SnowFlakeUidGenerator uidGenerator;
 
-    @Transactional(rollbackFor = Exception.class)
-    public UserTokenAuth login(WeiChatAccountEntity entity) {
-        String id = uidGenerator.nextIdByString();
-        entity.setCreateTime(Date.from(Instant.now()));
-        weichatDao.create(entity);
-        //TODO 获取token
-        return new UserTokenAuth("token");
-    }
+	@Transactional(rollbackFor = Exception.class)
+	public UserTokenAuth login(WeiChatAccountEntity entity) {
+		String id = uidGenerator.nextIdByString();
+		entity.setCreateTime(Date.from(Instant.now()));
+		weichatDao.create(entity);
+		//TODO 获取token
+		return new UserTokenAuth("token");
+	}
 
+	public WeichatGetTokenResponseDto auth(WeichatGetTokenRequestDto requestDto) {
+		//TODO 调用微信的认证接口
+		return new WeichatGetTokenResponseDto();
+	}
 
-    public WeichatGetTokenResponseDto auth(WeichatGetTokenRequestDto requestDto) {
-        //TODO 调用微信的认证接口
-         return new  WeichatGetTokenResponseDto();
-    }
-
-    public WeichatAuthResponseDto loginRequest() {
-        //TODO 微信登陆请求
-        return new WeichatAuthResponseDto();
-    }
+	public WeichatAuthResponseDto loginRequest() {
+		//TODO 微信登陆请求
+		return new WeichatAuthResponseDto();
+	}
 }

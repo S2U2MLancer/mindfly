@@ -6,5 +6,5 @@ import lombok.Setter;
 @Getter
 @Setter
 public class WeichatLoginDto {
-	private String  openId;
+	private String openId;
 }

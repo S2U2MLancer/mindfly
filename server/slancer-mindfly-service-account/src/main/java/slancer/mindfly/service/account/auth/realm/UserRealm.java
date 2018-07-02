@@ -1,14 +1,18 @@
 package slancer.mindfly.service.account.auth.realm;
 
-import org.apache.shiro.authc.*;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.AuthenticationInfo;
+import org.apache.shiro.authc.AuthenticationToken;
+import org.apache.shiro.authc.SimpleAuthenticationInfo;
+import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
 import slancer.mindfly.service.account.entity.UserEntity;
-import slancer.mindfly.service.account.service.UserService;
 import slancer.mindfly.service.account.service.UserService;
 
 /**
@@ -20,34 +24,33 @@ import slancer.mindfly.service.account.service.UserService;
 @Component
 public class UserRealm extends AuthorizingRealm {
 
-    @Autowired
-    private UserService userService;
+	@Autowired
+	private UserService userService;
 
-    @Override
-    public boolean supports(AuthenticationToken token) {
-        return token instanceof UserTokenAuth;
-    }
+	@Override
+	public boolean supports(AuthenticationToken token) {
+		return token instanceof UserTokenAuth;
+	}
 
-    @Override
-    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken)
-            throws AuthenticationException {
-        UserTokenAuth auth = (UserTokenAuth)authenticationToken;
-        UserEntity entity = userService.get(auth.getToken());
-        if (entity == null) {
-            throw new UnknownAccountException();
-        }
+	@Override
+	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken)
+		throws AuthenticationException {
+		UserTokenAuth auth = (UserTokenAuth)authenticationToken;
+		UserEntity entity = userService.get(auth.getToken());
+		if (entity == null) {
+			throw new UnknownAccountException();
+		}
 
-        auth.setUserEntity(entity);
-        SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(
-                entity, auth.getCredentials(), getName());
-        return info;
-    }
+		auth.setUserEntity(entity);
+		SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(
+			entity, auth.getCredentials(), getName());
+		return info;
+	}
 
-    @Override
-    protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
-        SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-        return info;
-    }
-
+	@Override
+	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
+		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
+		return info;
+	}
 
 }
