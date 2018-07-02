@@ -11,7 +11,7 @@ import java.util.Date;
  * class UserInfoDTO
  *
  * @author xiayy860612
- * @date 2018/5/19
+ * @date 2018/6/25
  */
 @Getter
 @Setter

@@ -1,5 +1,8 @@
 package slancer.mindfly.service.account.config;
 
+import javax.sql.DataSource;
+import java.sql.SQLException;
+
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.support.http.StatViewServlet;
 import com.alibaba.druid.support.http.WebStatFilter;
@@ -11,9 +14,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
-
-import javax.sql.DataSource;
-import java.sql.SQLException;
 
 /**
  * @author Amos Xia
@@ -63,6 +63,11 @@ public class DruidConfig {
     @Value("{spring.datasource.connectionProperties}")
     private String connectionProperties;
 
+    @Value("${mindfly.druid.admin.user}")
+    private String adminUser;
+    @Value("${mindfly.druid.admin.pwd}")
+    private String adminPassword;
+
     @Bean
     @Primary
     public DataSource druidDataSource() {
@@ -86,7 +91,8 @@ public class DruidConfig {
         datasource.setTestOnReturn(testOnReturn);
 
         datasource.setPoolPreparedStatements(poolPreparedStatements);
-        datasource.setMaxPoolPreparedStatementPerConnectionSize(maxPoolPreparedStatementPerConnectionSize);
+        datasource.setMaxPoolPreparedStatementPerConnectionSize(
+                maxPoolPreparedStatementPerConnectionSize);
         try {
             datasource.setFilters(filters);
         } catch (SQLException e) {
@@ -104,11 +110,11 @@ public class DruidConfig {
         // IP白名单
         servletRegistrationBean.addInitParameter("allow", "");
         // IP黑名单(共同存在时，deny优先于allow)
-//        servletRegistrationBean.addInitParameter("deny","192.168.1.100");
+        // servletRegistrationBean.addInitParameter("deny","192.168.1.100");
 
         //控制台管理用户
-        servletRegistrationBean.addInitParameter("loginUsername", "root");
-        servletRegistrationBean.addInitParameter("loginPassword", "root");
+        servletRegistrationBean.addInitParameter("loginUsername", adminUser);
+        servletRegistrationBean.addInitParameter("loginPassword", adminPassword);
         //是否能够重置数据
         servletRegistrationBean.addInitParameter("resetEnable", "false");
         return servletRegistrationBean;
@@ -121,7 +127,8 @@ public class DruidConfig {
         //添加过滤规则
         filterRegistrationBean.addUrlPatterns("/*");
         //忽略过滤的格式
-        filterRegistrationBean.addInitParameter("exclusions", "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*");
+        filterRegistrationBean.addInitParameter(
+                "exclusions", "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*");
         return filterRegistrationBean;
     }
 

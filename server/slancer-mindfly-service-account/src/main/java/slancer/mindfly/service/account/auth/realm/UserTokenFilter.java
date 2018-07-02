@@ -39,7 +39,8 @@ public class UserTokenFilter extends AccessControlFilter {
     }
 
     @Override
-    protected boolean onAccessDenied(ServletRequest servletRequest, ServletResponse servletResponse) throws Exception {
+    protected boolean onAccessDenied(
+            ServletRequest servletRequest, ServletResponse servletResponse) throws Exception {
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         response.sendRedirect("/unauth");
         return false;

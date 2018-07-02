@@ -11,7 +11,10 @@ import lombok.experimental.Accessors;
 @Setter
 @Accessors(chain = true)
 public class WeiChatAccountEntity {
+
 	private String userId;
+
 	private String openId;
-	private Date createTime = Date.from(Instant.now());;
+
+	private Date createTime = Date.from(Instant.now());
 }

@@ -33,6 +33,9 @@ public abstract class AbS2u2mControllerTest extends AbS2u2mSpringTest {
     @Autowired
     protected MockMvc mockMvc;
 
+    /**
+     *
+     */
     @After
     public void export() throws Exception {
         mockMvc.perform(get("/v2/api-docs").accept(MediaType.APPLICATION_JSON))

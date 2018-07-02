@@ -1,13 +1,13 @@
 package slancer.mindfly.service.account.service.account.weichataccount;
 
+import slancer.mindfly.service.account.controller.account.dto.WeichatLoginDto;
 import slancer.mindfly.service.account.entity.UserEntity;
-import slancer.mindfly.service.account.entity.account.WeiChatAccountEntity;
 import slancer.mindfly.service.account.service.account.IAccountService;
 
-public class WeiChatAccountService implements IAccountService<WeiChatAccountEntity> {
+public class WeiChatAccountService implements IAccountService<WeiChatAccountEntity,WeiChatAccountEntity,WeichatLoginDto> {
 
 	@Override
-	public UserEntity reg(WeiChatAccountEntity info, UserEntity userInfo) {
+	public UserEntity reg(WeiChatAccountEntity info) {
 		return null;
 	}
 
@@ -17,7 +17,7 @@ public class WeiChatAccountService implements IAccountService<WeiChatAccountEnti
 	}
 
 	@Override
-	public void bind(WeiChatAccountEntity info, String userId) {
+	public void bind(WeichatLoginDto account, UserEntity user) {
 
 	}
 }

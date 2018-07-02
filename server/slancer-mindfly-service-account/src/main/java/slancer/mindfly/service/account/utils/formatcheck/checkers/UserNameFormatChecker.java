@@ -19,7 +19,7 @@ public final class UserNameFormatChecker implements IStringFormatChecker {
     private static final Pattern pattern;
 
     static {
-//        String specialChars = "!@#$%^&*()-+=";
+        // String specialChars = "!@#$%^&*()-+=";
         String reg = "^[a-zA-Z]\\w+$";
         pattern = Pattern.compile(reg);
     }

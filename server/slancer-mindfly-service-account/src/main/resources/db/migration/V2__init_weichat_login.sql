@@ -6,6 +6,6 @@ CREATE TABLE IF NOT EXISTS `weichat_account` (
   `open_id` VARCHAR(256) NOT NULL,
   `create_time` DATETIME NOT NULL,
   PRIMARY KEY (`user_id`),
-  UNIQUE KEY account_oppenId (`openId`)
-) Engine=InnoDB default charset utf8mb4;
+  UNIQUE KEY account_oppenId (`open_id`)
+) Engine=InnoDB default charset = utf8mb4;
 
