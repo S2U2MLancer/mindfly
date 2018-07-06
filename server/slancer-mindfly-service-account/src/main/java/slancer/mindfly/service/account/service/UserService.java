@@ -1,14 +1,13 @@
 package slancer.mindfly.service.account.service;
 
-import slancer.mindfly.core.exception.ExceptionBuilder;
-import slancer.mindfly.service.account.dao.UserDAO;
-import slancer.mindfly.service.account.entity.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import slancer.mindfly.core.exception.ExceptionBuilder;
 import slancer.mindfly.core.uid.SnowFlakeUidGenerator;
+import slancer.mindfly.service.account.dao.UserDAO;
+import slancer.mindfly.service.account.entity.UserEntity;
 import slancer.mindfly.service.account.error.AccountErrorCodeEnum;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.time.Instant;
 import java.util.Date;

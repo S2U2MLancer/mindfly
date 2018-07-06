@@ -16,7 +16,11 @@ public enum AccountErrorCodeEnum implements IErrorCodeEnum {
     NotSetUserEntityDuringAuth(51),
 
     // user
-    UserNotExisted(300)
+    UserNotExisted(300),
+
+    // utils pwd encrypt
+    PasswordEncryptError(1100),
+
     ;
 
     private int code;
