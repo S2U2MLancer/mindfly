@@ -1,13 +1,17 @@
 package slancer.mindfly.service.account.entity;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
+import slancer.mindfly.service.account.controller.user.dto.WeChatRegisteDto;
 import slancer.mindfly.service.account.enums.GenderEnum;
 import slancer.mindfly.service.account.enums.GenderEnum;
 
 import java.time.Instant;
 import java.util.Date;
+
+import org.springframework.beans.BeanUtils;
 
 /**
  * class UserEntity
@@ -17,6 +21,7 @@ import java.util.Date;
  */
 @Getter
 @Setter
+@NoArgsConstructor
 @Accessors(chain = true)
 public class UserEntity {
     private String id;
@@ -28,5 +33,9 @@ public class UserEntity {
     private Date createTime = Date.from(Instant.now());
     private Date updateTime;
     private Boolean deleteFlag = false;
+
+    public UserEntity(WeChatRegisteDto verifyDto) {
+        BeanUtils.copyProperties(verifyDto,this);
+    }
 
 }
