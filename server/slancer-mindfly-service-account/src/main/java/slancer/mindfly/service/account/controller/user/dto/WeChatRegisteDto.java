@@ -8,7 +8,7 @@ import slancer.mindfly.service.account.enums.GenderEnum;
 
 @Setter
 @Getter
-public class WeChatRegisteDto {
+public class WeChatRegisteDTO {
     private String code;
     private String password;
     private String nickName;
