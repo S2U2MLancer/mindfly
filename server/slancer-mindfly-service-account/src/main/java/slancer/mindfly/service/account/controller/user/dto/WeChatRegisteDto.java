@@ -1,0 +1,17 @@
+package slancer.mindfly.service.account.controller.user.dto;
+
+import java.util.Date;
+
+import lombok.Getter;
+import lombok.Setter;
+import slancer.mindfly.service.account.enums.GenderEnum;
+
+@Setter
+@Getter
+public class WeChatRegisteDTO {
+    private String code;
+    private String password;
+    private String nickName;
+    private GenderEnum gender = GenderEnum.Unknown;
+    private Date birthday;
+}
