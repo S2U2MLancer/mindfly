@@ -8,8 +8,7 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import slancer.mindfly.service.account.entity.UserEntity;
-import slancer.mindfly.service.account.service.UserService;
-import slancer.mindfly.service.account.service.UserService;
+import slancer.mindfly.service.account.utils.token.IUserToken;
 
 /**
  * class UserRealm, check
@@ -21,7 +20,7 @@ import slancer.mindfly.service.account.service.UserService;
 public class UserRealm extends AuthorizingRealm {
 
     @Autowired
-    private UserService userService;
+    private IUserToken userToken;
 
     @Override
     public boolean supports(AuthenticationToken token) {
@@ -32,7 +31,7 @@ public class UserRealm extends AuthorizingRealm {
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken)
             throws AuthenticationException {
         UserTokenAuth auth = (UserTokenAuth)authenticationToken;
-        UserEntity entity = userService.get(auth.getToken());
+        UserEntity entity = userToken.getUser(auth.getToken());
         if (entity == null) {
             throw new UnknownAccountException();
         }
