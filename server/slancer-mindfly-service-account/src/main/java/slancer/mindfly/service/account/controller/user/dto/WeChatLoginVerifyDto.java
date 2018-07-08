@@ -8,5 +8,5 @@ import lombok.Setter;
 @Setter
 @Getter
 public class WeChatLoginVerifyDto {
-	private String code;
+    private String code;
 }

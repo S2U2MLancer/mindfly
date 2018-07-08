@@ -10,11 +10,16 @@ import slancer.mindfly.service.account.service.account.bo.WeChatBindBo;
 @Service
 public class WeChatService {
 
-	public String getOpenId(String code) {
-		return "";
-	}
+    public String getOpenId(String code) {
+        // if user is exist return token
+        // else cache code : (openId,session_key) and return error code
+        return "";
+    }
 
-	public void bind(WeChatBindBo bindBo,UserEntity userEntity) {
+    public void regist(WeChatBindBo bindBo,UserEntity userEntity) {
 
-	}
+        //get openId by code from cache
+        //insert wecahtg account and userInfo
+
+    }
 }

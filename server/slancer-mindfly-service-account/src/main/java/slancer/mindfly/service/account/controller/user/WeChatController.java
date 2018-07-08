@@ -20,27 +20,27 @@ import slancer.mindfly.service.account.service.account.bo.WeChatBindBo;
 @RequestMapping("/weChat")
 public class WeChatController {
 
-	@Autowired
-	WeChatService weChatService;
+    @Autowired
+    WeChatService weChatService;
+
+    @S2u2mResponseBody
+    @ApiOperation(value = "登录")
+    @PostMapping("/login")
+    public String getOpenId(@RequestBody WeChatLoginVerifyDto verifyDto) {
+        WeChatLoginVerifyResponseDto responseDto = new WeChatLoginVerifyResponseDto();
+        return "";
+    }
 
 
-	@S2u2mResponseBody
-	@ApiOperation(value = "登录凭证校验")
-	@PostMapping("/login/verify")
-	public WeChatLoginVerifyResponseDto getOpenId(@RequestBody WeChatLoginVerifyDto verifyDto) {
-		WeChatLoginVerifyResponseDto responseDto = new WeChatLoginVerifyResponseDto();
-		responseDto.setOpenId(weChatService.getOpenId(verifyDto.getCode()));
-		return responseDto;
-	}
-
-
-	@S2u2mResponseBody
-	@ApiOperation(value = "用户使用微信注册")
-	@PostMapping("/regist")
-	public void weChatRegist(@RequestBody WeChatRegisteDto verifyDto) {
-		UserEntity userEntity = new UserEntity(verifyDto);
-		WeChatBindBo weChatBindBo = new WeChatBindBo(verifyDto);
-		weChatService.bind(weChatBindBo,userEntity);
-	}
+    @S2u2mResponseBody
+    @ApiOperation(value = "微信注册")
+    @PostMapping("/regist")
+    public String weChatRegist(@RequestBody WeChatRegisteDto verifyDto) {
+        UserEntity userEntity = new UserEntity(verifyDto);
+        WeChatBindBo weChatBindBo = new WeChatBindBo(verifyDto);
+        weChatService.regist(weChatBindBo,userEntity);
+        // login
+        return "";
+    }
 
 }
