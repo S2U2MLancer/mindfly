@@ -36,10 +36,10 @@ public class WeChatController {
     public WeChatResponseDTO weChatRegist(@RequestBody WeChatRegisteDto verifyDto) {
         UserEntity userEntity = new UserEntity();
         userEntity.setBirthday(verifyDto.getBirthday())
-				.setGender(verifyDto.getGender())
-				.setNickName(verifyDto.getNickName())
-				.setPassword(verifyDto.getPassword());
-        WeChatBindBO weChatBindBo = new WeChatBindBO(verifyDto);
+                .setGender(verifyDto.getGender())
+                .setNickName(verifyDto.getNickName())
+                .setPassword(verifyDto.getPassword());
+        WeChatBindBO weChatBindBo = new WeChatBindBO();
         weChatService.regist(weChatBindBo,userEntity);
         // login
         return new WeChatResponseDTO();
