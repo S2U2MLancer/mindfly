@@ -34,8 +34,4 @@ public class UserEntity {
     private Date updateTime;
     private Boolean deleteFlag = false;
 
-    public UserEntity(WeChatRegisteDto verifyDto) {
-        BeanUtils.copyProperties(verifyDto,this);
-    }
-
 }
