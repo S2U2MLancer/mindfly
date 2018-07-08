@@ -6,7 +6,7 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class WeChatLoginVerifyResponseDto {
-    @ApiModelProperty(value = "weCaht openId")
-    private String openId;
+public class WeChatResponseDTO {
+    @ApiModelProperty(value = "token")
+    private String token;
 }

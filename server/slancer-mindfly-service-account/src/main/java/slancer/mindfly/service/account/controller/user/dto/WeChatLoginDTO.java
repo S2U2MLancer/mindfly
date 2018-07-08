@@ -7,6 +7,6 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class WeChatLoginVerifyDto {
+public class WeChatLoginDTO {
     private String code;
 }

@@ -2,10 +2,8 @@ package slancer.mindfly.service.account.service.account;
 
 import org.springframework.stereotype.Service;
 
-import slancer.mindfly.service.account.controller.user.dto.WeChatLoginVerifyDto;
-import slancer.mindfly.service.account.controller.user.dto.WeChatRegisteDto;
 import slancer.mindfly.service.account.entity.UserEntity;
-import slancer.mindfly.service.account.service.account.bo.WeChatBindBo;
+import slancer.mindfly.service.account.service.account.bo.WeChatBindBO;
 
 @Service
 public class WeChatService {
@@ -16,7 +14,7 @@ public class WeChatService {
         return "";
     }
 
-    public void regist(WeChatBindBo bindBo,UserEntity userEntity) {
+    public void regist(WeChatBindBO bindBo, UserEntity userEntity) {
 
         //get openId by code from cache
         //insert wecahtg account and userInfo

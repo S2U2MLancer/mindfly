@@ -10,12 +10,8 @@ import slancer.mindfly.service.account.controller.user.dto.WeChatRegisteDto;
 @Setter
 @Getter
 @NoArgsConstructor
-public class WeChatBindBo {
+public class WeChatBindBO {
 
     private String openId;
-
-    public WeChatBindBo(WeChatRegisteDto verifyDto) {
-        BeanUtils.copyProperties(verifyDto,this);
-    }
 
 }
