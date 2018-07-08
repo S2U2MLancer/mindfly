@@ -4,14 +4,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
-import slancer.mindfly.service.account.controller.user.dto.WeChatRegisteDto;
-import slancer.mindfly.service.account.enums.GenderEnum;
 import slancer.mindfly.service.account.enums.GenderEnum;
 
 import java.time.Instant;
 import java.util.Date;
-
-import org.springframework.beans.BeanUtils;
 
 /**
  * class UserEntity
