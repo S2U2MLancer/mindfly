@@ -1,0 +1,26 @@
+@startuml
+
+==User Login==
+user-> application: 登陆(code)
+application -> wechat : verifyRequest(code appId appsecret)
+wechat --> application: response(session_key openId)
+alt if user with openId exist?
+
+application --> application: get login token
+application --> user: return token
+
+else not exist
+
+application --> application: cache (session_key, openId )
+application --> user: error code(user not exist)
+
+end
+
+==User Register==
+
+user --> application: 注册(code,userInfo)
+applicaiton -> application: get (session_key, openId ) from cache by code
+application --> application: regist new user with openId
+application --> user: return token
+
+@enduml
