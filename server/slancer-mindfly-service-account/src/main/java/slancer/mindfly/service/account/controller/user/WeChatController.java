@@ -13,7 +13,6 @@ import slancer.mindfly.service.account.controller.user.dto.WeChatRegistDTO;
 import slancer.mindfly.service.account.controller.user.dto.WeChatResponseDTO;
 import slancer.mindfly.service.account.entity.UserEntity;
 import slancer.mindfly.service.account.service.account.WeChatService;
-import slancer.mindfly.service.account.service.account.bo.WeChatBindBO;
 
 @RestController
 @RequestMapping("/weChat")
