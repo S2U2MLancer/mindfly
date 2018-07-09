@@ -5,6 +5,6 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class WeChatBindBo {
+public class WeChatBindBO {
     private String openId;
 }
