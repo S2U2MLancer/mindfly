@@ -11,6 +11,6 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 public class WeChatBindBO {
 
-    private String openId;
+	private String openId;
 
 }

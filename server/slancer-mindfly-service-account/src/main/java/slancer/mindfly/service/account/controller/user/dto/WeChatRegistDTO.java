@@ -12,10 +12,10 @@ import slancer.mindfly.service.account.enums.GenderEnum;
 @Setter
 @NoArgsConstructor
 @Accessors(chain = true)
-public class WeChatRegisteDTO {
-    private String code;
-    private String password;
-    private String nickName;
-    private GenderEnum gender = GenderEnum.Unknown;
-    private Date birthday;
+public class WeChatRegistDTO {
+	private String code;
+	private String password;
+	private String nickName;
+	private GenderEnum gender = GenderEnum.Unknown;
+	private Date birthday;
 }
