@@ -13,6 +13,7 @@ import slancer.mindfly.service.account.controller.user.dto.WeChatRegistDTO;
 import slancer.mindfly.service.account.controller.user.dto.WeChatResponseDTO;
 import slancer.mindfly.service.account.entity.UserEntity;
 import slancer.mindfly.service.account.service.account.WeChatService;
+import slancer.mindfly.service.account.service.account.bo.BindWeChatBO;
 
 @RestController
 @RequestMapping("/weChat")
@@ -38,7 +39,7 @@ public class WeChatController {
                 .setGender(verifyDto.getGender())
                 .setNickName(verifyDto.getNickName())
                 .setPassword(verifyDto.getPassword());
-        WeChatBindBO weChatBindBo = new WeChatBindBO();
+        BindWeChatBO weChatBindBo = new BindWeChatBO();
         weChatService.regist(weChatBindBo,userEntity);
         // login
         return new WeChatResponseDTO();
