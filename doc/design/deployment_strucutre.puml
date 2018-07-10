@@ -1,0 +1,46 @@
+@startuml
+
+cloud "LoadBalance(nginx)" as LB
+
+cloud ServiceRegister
+
+cloud "Interface Layer" as InterfaceLayer {
+
+    node WechatService
+    node AdminService
+
+
+    WechatService --> ServiceRegister: Invoke
+    AdminService --> ServiceRegister: Invoke
+}
+
+LB -0- InterfaceLayer
+
+cloud "Service Layer" as ServiceLayer {
+
+    node AuthService
+    node MindFlyService
+    node ActivityService
+
+    AuthService --> ServiceRegister: Register
+    MindFlyService --> ServiceRegister: Register
+    ActivityService --> ServiceRegister: Register
+
+}
+
+cloud Storage {
+    node MySQL
+    node Redis
+}
+
+ServiceLayer --> Storage : Invoke
+
+cloud MessageQueueMiddleware as MQ
+
+InterfaceLayer --> MQ : Product
+
+cloud MQConsumerService
+MQConsumerService --> MQ: Consume
+MQConsumerService --> ServiceRegister: Invoke
+
+@enduml
