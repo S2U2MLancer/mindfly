@@ -1,7 +1,7 @@
 
 --create database account_service default charset=utf8mb4;
 
-CREATE TABLE IF NOT EXISTS `user_info` (
+CREATE TABLE IF NOT EXISTS `wechat_info` (
   `open_id` unsigned bigint(20)  NOT NULL,
   `user_id` unsigned bigint(20)  NOT NULL,
   `create_time` datetime NOT NULL,
