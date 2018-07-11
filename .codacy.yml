@@ -4,3 +4,7 @@ engines:
     enable: true
     base_sub_dir: server
     language: java
+  ESLint:
+    enable: true
+    base_sub_dir: wechat_app
+    language: javascript
