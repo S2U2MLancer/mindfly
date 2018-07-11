@@ -1,6 +1,6 @@
-//index.js
-//获取应用实例
-const app = getApp()
+// index.js
+// 获取应用实例
+const app = getApp();
 
 Page({
   data: {
@@ -14,7 +14,7 @@ Page({
   //     url: '../logs/logs'
   //   })
   // },
-  onLoad: function () {
+  onLoad() {
     // if (app.globalData.userInfo) {
     //   this.setData({
     //     userInfo: app.globalData.userInfo,
@@ -42,12 +42,12 @@ Page({
     //   })
     // }
   },
-  getUserInfo: function(e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
+  getUserInfo(e) {
+    console.log(e);
+    app.globalData.userInfo = e.detail.userInfo;
     this.setData({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
-    })
+    });
   }
-})
+});
