@@ -1,0 +1,24 @@
+{
+  "name": "wechat_slancer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/S2U2MLancer/mindfly.git"
+  },
+  "author": "Slancer",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/S2U2MLancer/mindfly/issues"
+  },
+  "homepage": "https://github.com/S2U2MLancer/mindfly#readme",
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^13.0.0",
+    "eslint-plugin-import": "^2.13.0"
+  }
+}
