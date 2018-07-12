@@ -5,10 +5,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Setter
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class BindWeChatBO {
-    private String code;
+public class WeChatGetOpenIdBO {
+    private String js_code;
+    private String appid;
+    private String secret;
+    private String grant_type;
 }

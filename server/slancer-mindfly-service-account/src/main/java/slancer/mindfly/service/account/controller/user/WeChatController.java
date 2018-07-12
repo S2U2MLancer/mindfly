@@ -39,7 +39,7 @@ public class WeChatController {
                 .setGender(verifyDto.getGender())
                 .setNickName(verifyDto.getNickName())
                 .setPassword(verifyDto.getPassword());
-        BindWeChatBO weChatBindBo = new BindWeChatBO();
+        BindWeChatBO weChatBindBo = new BindWeChatBO(verifyDto.getCode());
         weChatService.regist(weChatBindBo,userEntity);
         // login
         return new WeChatResponseDTO();
