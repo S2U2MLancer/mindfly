@@ -25,8 +25,6 @@ public class WeChatController {
 
     @Autowired
     WeChatService weChatService;
-    @Autowired
-    UidTokenService uidTokenService;
 
     @S2u2mResponseBody
     @ApiOperation(value = "登录")
@@ -42,10 +40,7 @@ public class WeChatController {
     public LoginDTO weChatRegist(@RequestBody WeChatRegistDTO verifyDto) {
         WeChatRegistBO weChatRegistBO = new WeChatRegistBO();
         UserEntity reg = weChatService.reg(weChatRegistBO);
-        UserEntityToken entityToken = new UserEntityToken();
-        // login
-        entityToken.setUserEntity(reg);
-        String token = uidTokenService.create(entityToken);
+        String token = weChatService.getToken(reg);
         return new LoginDTO().setToken(token);
     }
 

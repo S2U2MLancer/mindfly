@@ -1,15 +1,19 @@
 package slancer.mindfly.service.account.service.account;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import slancer.mindfly.service.account.entity.UserEntity;
 import slancer.mindfly.service.account.service.account.bo.BindWeChatBO;
+import slancer.mindfly.service.account.service.account.bo.UserEntityToken;
 import slancer.mindfly.service.account.service.account.bo.WeChatLoginBO;
 import slancer.mindfly.service.account.service.account.bo.WeChatRegistBO;
 
 @Service
 public class WeChatService implements IAccountService<WeChatLoginBO,WeChatRegistBO,UserEntity>{
 
+    @Autowired
+    UidTokenService uidTokenService;
 
     @Override
     public UserEntity reg(WeChatRegistBO info) {
@@ -28,5 +32,12 @@ public class WeChatService implements IAccountService<WeChatLoginBO,WeChatRegist
     @Override
     public void bind(UserEntity account, UserEntity user) {
 
+    }
+
+    public String getToken(UserEntity userEntity) {
+        UserEntityToken entityToken = new UserEntityToken();
+        // login
+        entityToken.setUserEntity(userEntity);
+        String token = uidTokenService.create(entityToken);
     }
 }
