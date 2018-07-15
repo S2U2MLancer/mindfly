@@ -10,7 +10,7 @@ import lombok.experimental.Accessors;
 @Setter
 @NoArgsConstructor
 @Accessors(chain = true)
-public class WeChatResponseDTO {
+public class LoginDTO {
     @ApiModelProperty(value = "token")
     private String token;
 }
