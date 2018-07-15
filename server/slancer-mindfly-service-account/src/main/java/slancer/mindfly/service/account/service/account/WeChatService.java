@@ -39,5 +39,6 @@ public class WeChatService implements IAccountService<WeChatLoginBO,WeChatRegist
         // login
         entityToken.setUserEntity(userEntity);
         String token = uidTokenService.create(entityToken);
+        return token;
     }
 }
