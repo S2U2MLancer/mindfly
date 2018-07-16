@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="slancer.mindfly.service.account.dao.WeChatAccountDAO">
-    <resultMap id="WeChatAccountEntityMap" type="UserEntity">
+    <resultMap id="WeChatAccountEntityMap" type="WechatAccountEntity">
         <id column="open_id" jdbcType="BIGINT" property="openId"/>
         <result column="user_id" jdbcType="VARCHAR" property="userId"/>
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
@@ -11,7 +11,7 @@
         open_id, user_id,create_time
     </sql>
 
-    <insert id="create" parameterType="UserEntity">
+    <insert id="create" parameterType="WechatAccountEntity">
         insert into user_info (
         <include refid="all_fields"/>
         ) values (
