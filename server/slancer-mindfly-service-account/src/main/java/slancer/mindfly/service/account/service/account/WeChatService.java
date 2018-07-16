@@ -12,13 +12,13 @@ import slancer.mindfly.service.account.service.account.bo.WeChatRegistBO;
 @Service
 public class WeChatService implements IAccountService<WeChatLoginBO,WeChatRegistBO,UserEntity>{
 
-    @Autowired
-    UidTokenService uidTokenService;
+
 
     @Override
     public UserEntity reg(WeChatRegistBO info) {
         //get openId by code from cache
         //insert wecahtg account and userInfo
+
         return null;
     }
 
@@ -34,11 +34,4 @@ public class WeChatService implements IAccountService<WeChatLoginBO,WeChatRegist
 
     }
 
-    public String getToken(UserEntity userEntity) {
-        UserEntityToken entityToken = new UserEntityToken();
-        // login
-        entityToken.setUserEntity(userEntity);
-        String token = uidTokenService.create(entityToken);
-        return token;
-    }
 }
