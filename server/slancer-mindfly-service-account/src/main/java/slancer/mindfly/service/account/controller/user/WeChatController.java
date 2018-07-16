@@ -12,11 +12,8 @@ import slancer.mindfly.service.account.controller.user.dto.LoginDTO;
 import slancer.mindfly.service.account.controller.user.dto.WeChatLoginDTO;
 import slancer.mindfly.service.account.controller.user.dto.WeChatRegistDTO;
 import slancer.mindfly.service.account.entity.UserEntity;
-import slancer.mindfly.service.account.service.account.ITokenService;
-import slancer.mindfly.service.account.service.account.UidTokenService;
+import slancer.mindfly.service.account.utils.token.UidTokenService;
 import slancer.mindfly.service.account.service.account.WeChatService;
-import slancer.mindfly.service.account.service.account.bo.BindWeChatBO;
-import slancer.mindfly.service.account.service.account.bo.UserEntityToken;
 import slancer.mindfly.service.account.service.account.bo.WeChatRegistBO;
 
 @RestController
@@ -42,9 +39,7 @@ public class WeChatController {
     public LoginDTO weChatRegist(@RequestBody WeChatRegistDTO verifyDto) {
         WeChatRegistBO weChatRegistBO = new WeChatRegistBO();
         UserEntity reg = weChatService.reg(weChatRegistBO);
-        UserEntityToken entityToken = new UserEntityToken();
-        entityToken.setUserEntity(reg);
-        String token = uidTokenService.create(entityToken);
+        String token = uidTokenService.create(reg);
         return new LoginDTO().setToken(token);
     }
 

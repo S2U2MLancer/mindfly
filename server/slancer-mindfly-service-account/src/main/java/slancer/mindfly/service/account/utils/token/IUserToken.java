@@ -8,8 +8,8 @@ import slancer.mindfly.service.account.entity.UserEntity;
  * @author xiayy860612
  * @date 2018/6/24
  */
-public interface IUserToken {
-    String create(UserEntity param);
+public interface IUserToken<TP> {
+    String create(TP param);
 
     UserEntity getUser(String token);
 }

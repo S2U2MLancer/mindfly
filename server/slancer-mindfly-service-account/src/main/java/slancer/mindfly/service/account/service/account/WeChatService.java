@@ -1,11 +1,8 @@
 package slancer.mindfly.service.account.service.account;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import slancer.mindfly.service.account.entity.UserEntity;
-import slancer.mindfly.service.account.service.account.bo.BindWeChatBO;
-import slancer.mindfly.service.account.service.account.bo.UserEntityToken;
 import slancer.mindfly.service.account.service.account.bo.WeChatLoginBO;
 import slancer.mindfly.service.account.service.account.bo.WeChatRegistBO;
 
