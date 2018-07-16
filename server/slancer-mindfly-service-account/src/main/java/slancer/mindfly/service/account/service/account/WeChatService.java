@@ -14,7 +14,7 @@ public class WeChatService implements IAccountService<WeChatLoginBO,WeChatRegist
     @Override
     public UserEntity reg(WeChatRegistBO info) {
         //get openId by code from cache
-        //insert wecahtg account and userInfo
+        //insert wechat account and userInfo
 
         return null;
     }
