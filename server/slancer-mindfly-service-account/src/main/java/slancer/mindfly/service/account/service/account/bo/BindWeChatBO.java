@@ -10,8 +10,6 @@ import java.util.Date;
 @Getter
 public class BindWeChatBO {
     private String openId;
-
-    private String code;
     private String password;
     private String nickName;
     private GenderEnum gender = GenderEnum.Unknown;
