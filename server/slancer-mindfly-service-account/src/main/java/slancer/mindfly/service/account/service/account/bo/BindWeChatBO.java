@@ -10,8 +10,5 @@ import java.util.Date;
 @Getter
 public class BindWeChatBO {
     private String openId;
-    private String password;
-    private String nickName;
-    private GenderEnum gender = GenderEnum.Unknown;
-    private Date birthday;
+    private String userId;
 }
