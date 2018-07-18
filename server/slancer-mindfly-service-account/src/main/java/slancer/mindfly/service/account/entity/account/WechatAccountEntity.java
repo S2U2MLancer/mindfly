@@ -2,7 +2,6 @@ package slancer.mindfly.service.account.entity.account;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.experimental.Accessors;
 
 import java.util.Date;
 
@@ -12,9 +11,6 @@ import java.util.Date;
  * @author xiayy860612
  * @date 2018/6/24
  */
-@Setter
-@Getter
-@Accessors(chain = true)
 public class WechatAccountEntity {
     private String openId;
     private String userId;

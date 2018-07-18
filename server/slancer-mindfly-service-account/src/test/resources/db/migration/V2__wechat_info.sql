@@ -1,9 +1,9 @@
 
 --create database account_service default charset=utf8mb4;
 
-CREATE TABLE IF NOT EXISTS `wechat_info` (
-  `open_id` bigint(20)  NOT NULL,
-  `user_id` bigint(20)  NOT NULL,
+CREATE TABLE IF NOT EXISTS `wechat_account` (
+  `open_id`  bigint(20)  NOT NULL,
+  `user_id`  bigint(20)  NOT NULL,
   `create_time` datetime NOT NULL,
   PRIMARY KEY (`open_id`)
 ) Engine=InnoDB default charset=utf8mb4;
