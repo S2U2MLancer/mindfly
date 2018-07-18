@@ -26,14 +26,17 @@ public class AccessOtherServices {
 		RestTemplate restTemplate = new RestTemplate();
 		HttpHeaders headers = new HttpHeaders();
 
-		String url = thirdServerProperty.getWechatUrl();
+		String url = thirdServerProperty.getWeChatUrl() + "?appid=" + thirdServerProperty.getAppId()
+				+ "&secret=" + thirdServerProperty.getSecret()
+				+ "&js_code=" + getOpenIdBO.getCode()
+				+ "&grant_type=" + thirdServerProperty.getGrantType();
 		WeChatOpenIdBO weChatOpenIdBO = null;
 		try {
 			log.info("invoke get openId from wechant");
 			ResponseEntity<String> responseEntity = restTemplate.exchange(url, HttpMethod.GET, new HttpEntity<>(headers),String.class);
 			log.info("invoke get openId from wechant [" + responseEntity.getBody());
 			JSONObject jsonpObject = JSONObject.parseObject(responseEntity.getBody());
-			if (jsonpObject.getInteger("code") == 0) {
+			if (jsonpObject.getInteger("errcode") == 0) {
 				weChatOpenIdBO = new WeChatOpenIdBO();
 				weChatOpenIdBO.setOpenId(jsonpObject.getString("openid"));
 				weChatOpenIdBO.setSession_key(jsonpObject.getString("session_key"));

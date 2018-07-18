@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 
 import slancer.mindfly.core.exception.ExceptionBuilder;
 import slancer.mindfly.service.account.auth.realm.UserTokenAuth;
+import slancer.mindfly.service.account.cache.OpenIdCache;
+import slancer.mindfly.service.account.dao.OpenIdDao;
 import slancer.mindfly.service.account.entity.account.WechatAccountEntity;
 import slancer.mindfly.service.account.error.AccountErrorCodeEnum;
 import slancer.mindfly.service.account.service.UserService;
@@ -17,6 +19,7 @@ import slancer.mindfly.service.account.service.account.bo.BindWeChatBO;
 
 import java.time.Instant;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 @Service
 public class WeChatService {
@@ -28,11 +31,13 @@ public class WeChatService {
     WeChatAccountDAO weChatAccountDAO;
     @Autowired
     UserService userService;
+    @Autowired
+    OpenIdDao openIdDao;
 
-    public String getOpenId(String code) {
-        // if user is exist return token
 
-        WeChatGetOpenIdBO getOpenIdBO = new WeChatGetOpenIdBO(code,"","","");
+    public String login(String code) {
+
+        WeChatGetOpenIdBO getOpenIdBO = new WeChatGetOpenIdBO(code);
         WeChatOpenIdBO weChatOpenIdBO = accessOtherServices.weChatLogin(getOpenIdBO);
         UserTokenAuth userTokenAuth = null;
         UserEntity userEntity = weChatAccountDAO.getById(weChatOpenIdBO.getOpenId());
@@ -40,15 +45,25 @@ public class WeChatService {
             userTokenAuth = new UserTokenAuth(userEntity.getId());
         }  else {
             //TODO cache code and openID
+            OpenIdCache openIdCache = new OpenIdCache();
+            openIdCache.setOpenId(weChatOpenIdBO.getOpenId());
+            openIdDao.insert(code,openIdCache,1L, TimeUnit.DAYS);
         }
         return userTokenAuth.getToken();
     }
 
     public String regist(BindWeChatBO bindBo, UserEntity userEntity) {
 
-        String code = "";
-        String openId = "";
-        //TODO get code and openId from cache
+        String openId = null;
+        OpenIdCache openIdCache = openIdDao.get(bindBo.getCode());
+        if(openIdCache == null) {
+            WeChatGetOpenIdBO openIdBO = new WeChatGetOpenIdBO();
+            openIdBO.setCode(bindBo.getCode());
+            WeChatOpenIdBO weChatOpenIdBO = accessOtherServices.weChatLogin(openIdBO);
+            openId = weChatOpenIdBO.getOpenId();
+        } else {
+            openId = openIdCache.getOpenId();
+        }
 
         if ( weChatAccountDAO.getById(openId) != null) {
             throw ExceptionBuilder.build(AccountErrorCodeEnum.WechatRegisted,

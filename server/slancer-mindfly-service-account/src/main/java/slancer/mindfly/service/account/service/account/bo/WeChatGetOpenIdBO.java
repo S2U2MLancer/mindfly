@@ -10,8 +10,5 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class WeChatGetOpenIdBO {
-    private String js_code;
-    private String appid;
-    private String secret;
-    private String grant_type;
+    private String code;
 }
