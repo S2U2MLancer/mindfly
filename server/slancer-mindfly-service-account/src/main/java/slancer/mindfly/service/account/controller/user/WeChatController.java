@@ -25,8 +25,10 @@ public class WeChatController {
     @S2u2mResponseBody
     @ApiOperation(value = "登录")
     @PostMapping("/login")
-    public WeChatResponseDTO getOpenId(@RequestBody WeChatLoginDTO verifyDto) {
-        return new WeChatResponseDTO();
+    public WeChatResponseDTO login(@RequestBody WeChatLoginDTO verifyDto) {
+
+        String login = weChatService.login(verifyDto.getCode());
+        return new WeChatResponseDTO(login);
     }
 
 

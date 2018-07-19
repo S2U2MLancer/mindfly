@@ -16,8 +16,8 @@ public abstract class RedisDao<PKT extends Object,VT extends Serializable> {
     protected abstract String uniquePK(PKT pkt);
 
     public void insert(PKT pk, VT value, Long timeOut, TimeUnit timeUnit) {
-          String key = uniquePK(pk);
-          redisTemplate.opsForValue().set(key,value,timeOut,timeUnit);
+        String key = uniquePK(pk);
+        redisTemplate.opsForValue().set(key,value,timeOut,timeUnit);
     }
 
     public VT get(PKT pk) {

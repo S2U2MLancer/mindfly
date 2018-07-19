@@ -162,7 +162,7 @@
         <module name="AbbreviationAsWordInName">
             <property name="ignoreFinal" value="false"/>
             <property name="allowedAbbreviationLength" value="1"/>
-            <property name="allowedAbbreviations" value="XML,URL, API, DTO, DAO,BO"/>
+            <property name="allowedAbbreviations" value="XML,URL, API, DTO, DAO,BO,PK"/>
         </module>
         <module name="OverloadMethodsDeclarationOrder"/>
         <module name="VariableDeclarationUsageDistance"/>

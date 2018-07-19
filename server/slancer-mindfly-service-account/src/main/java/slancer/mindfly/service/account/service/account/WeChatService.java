@@ -44,7 +44,6 @@ public class WeChatService {
         if (userEntity != null) {
             userTokenAuth = new UserTokenAuth(userEntity.getId());
         }  else {
-            //TODO cache code and openID
             OpenIdCache openIdCache = new OpenIdCache();
             openIdCache.setOpenId(weChatOpenIdBO.getOpenId());
             openIdDao.insert(code,openIdCache,1L, TimeUnit.DAYS);
