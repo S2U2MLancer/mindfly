@@ -18,6 +18,7 @@ public enum AccountErrorCodeEnum implements IErrorCodeEnum {
     // user
     UserNotExisted(300),
     WechatRegisted(301),
+    GetOpenIdFailed(302),
 
     // utils pwd encrypt
     PasswordEncryptError(1100),

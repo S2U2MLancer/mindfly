@@ -44,19 +44,23 @@ public class WeChatService {
         UserEntity userEntity = weChatAccountDAO.getById(weChatOpenIdBO.getOpenId());
         if (userEntity != null) {
             userTokenAuth = new UserTokenAuth(userEntity.getId());
-        }  else {
+            return userTokenAuth.getToken();
+        }  else if (null != weChatOpenIdBO.getOpenId()) {
             OpenIdCache openIdCache = new OpenIdCache();
             openIdCache.setOpenId(weChatOpenIdBO.getOpenId());
             openIdDao.insert(code,openIdCache.getOpenId(),1L, TimeUnit.DAYS);
+            throw ExceptionBuilder.build(AccountErrorCodeEnum.UserNotExisted,
+                    String.format("User Not Existed"));
         }
-        return userTokenAuth.getToken();
+        throw ExceptionBuilder.build(AccountErrorCodeEnum.GetOpenIdFailed,
+                String.format("Get OpenId Failed by code %s",code));
     }
 
     public String regist(WeChatRegistBO bindBo, UserEntity userEntity) {
 
         String openId = null;
         OpenIdCache openIdCache = new OpenIdCache(openIdDao.get(bindBo.getCode()));
-        if(openIdCache == null) {
+        if (openIdCache == null) {
             WeChatGetOpenIdBO openIdBO = new WeChatGetOpenIdBO();
             openIdBO.setCode(bindBo.getCode());
             WeChatOpenIdBO weChatOpenIdBO = accessOtherServices.weChatLogin(openIdBO);
@@ -65,7 +69,7 @@ public class WeChatService {
             openId = openIdCache.getOpenId();
         }
 
-        if ( weChatAccountDAO.getById(openId) != null) {
+        if (weChatAccountDAO.getById(openId) != null) {
             throw ExceptionBuilder.build(AccountErrorCodeEnum.WechatRegisted,
                     String.format("wechant account [%s] has existed", openId));
         }

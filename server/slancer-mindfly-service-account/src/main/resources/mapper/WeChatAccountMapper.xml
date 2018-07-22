@@ -19,10 +19,16 @@
         )
     </insert>
 
-    <select id="getById" resultMap="WeChatAccountEntityMap">
-        select <include refid="all_fields" />
-        from user_info
+    <sql id="userInfo">
+        id, password, nick_name, gender, birthday,
+        ui.create_time, ui.update_time, ui.delete_flag
+    </sql>
+
+    <select id="getById" resultType="UserEntity">
+        select <include refid="userInfo" />
+        from user_info ui,wechat_account wa
         where open_id=#{openId}
+        and  ui.id = wa.user_id
     </select>
     
 </mapper>

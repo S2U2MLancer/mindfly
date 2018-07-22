@@ -31,7 +31,7 @@ public class AccessOtherServicesTest extends AbS2u2mSpringTest {
         //action
         WeChatOpenIdBO weChatOpenIdBO = accessOtherServices.weChatLogin(weChatGetOpenIdBO);
         //verify
-        assertThat(weChatOpenIdBO.getOpenId()).isNotBlank();
+            assertThat(weChatOpenIdBO.getOpenId()).isNotBlank();
 
 
 

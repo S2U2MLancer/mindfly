@@ -1,10 +1,7 @@
 package slancer.mindfly.service.account.controller.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import io.swagger.annotations.ApiOperation;
 import slancer.mindfly.core.dto.S2u2mResponseBody;
@@ -17,7 +14,7 @@ import slancer.mindfly.service.account.service.account.bo.BindWeChatBO;
 import slancer.mindfly.service.account.service.account.bo.WeChatRegistBO;
 
 @RestController
-@RequestMapping("/weChat")
+@RequestMapping("/account/weChat")
 public class WeChatController {
 
     @Autowired
@@ -25,10 +22,10 @@ public class WeChatController {
 
     @S2u2mResponseBody
     @ApiOperation(value = "登录")
-    @PostMapping("/login")
-    public WeChatResponseDTO login(@RequestBody WeChatLoginDTO verifyDto) {
+    @GetMapping("/login/{code}")
+    public WeChatResponseDTO login(@PathVariable String code) {
 
-        String login = weChatService.login(verifyDto.getCode());
+        String login = weChatService.login(code);
         return new WeChatResponseDTO(login);
     }
 

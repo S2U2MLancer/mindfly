@@ -35,13 +35,11 @@ public class WeChatControllerTest extends AbS2u2mControllerTest {
 
     @Test
     public void login() throws Exception {
-        WeChatLoginDTO weChatLoginDTO = new WeChatLoginDTO();
-        weChatLoginDTO.setCode("123");
-        ObjectMapper objectMapper = new ObjectMapper();
+        String code = "123456";
+        String url = "/account/weChat/login" +"/" + code;
         doReturn(token).when(weChatService).login(any(String.class));
-        MvcResult rst = mockMvc.perform(post("/weChat/login")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(weChatLoginDTO)))
+        MvcResult rst = mockMvc.perform(get(url)
+                .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andDo(documentAPI("wechatLogin"))
                 .andReturn();
@@ -68,7 +66,7 @@ public class WeChatControllerTest extends AbS2u2mControllerTest {
 
         //action
         ObjectMapper objectMapper = new ObjectMapper();
-        MvcResult rst = mockMvc.perform(post("/weChat/regist")
+        MvcResult rst = mockMvc.perform(post("/account/weChat/regist")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(weChatRegistDTO)))
                 .andExpect(status().isOk())
