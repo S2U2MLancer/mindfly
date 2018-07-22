@@ -46,7 +46,7 @@ public class WeChatService {
         }  else {
             OpenIdCache openIdCache = new OpenIdCache();
             openIdCache.setOpenId(weChatOpenIdBO.getOpenId());
-            openIdDao.insert(code,openIdCache,1L, TimeUnit.DAYS);
+            openIdDao.insert(code,openIdCache.getOpenId(),1L, TimeUnit.DAYS);
         }
         return userTokenAuth.getToken();
     }
@@ -54,7 +54,7 @@ public class WeChatService {
     public String regist(BindWeChatBO bindBo, UserEntity userEntity) {
 
         String openId = null;
-        OpenIdCache openIdCache = openIdDao.get(bindBo.getCode());
+        OpenIdCache openIdCache = new OpenIdCache(openIdDao.get(bindBo.getCode()));
         if(openIdCache == null) {
             WeChatGetOpenIdBO openIdBO = new WeChatGetOpenIdBO();
             openIdBO.setCode(bindBo.getCode());

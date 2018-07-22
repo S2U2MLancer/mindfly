@@ -42,9 +42,9 @@ public class WeChatController {
                 .setNickName(verifyDto.getNickName())
                 .setPassword(verifyDto.getPassword());
         BindWeChatBO weChatBindBo = new BindWeChatBO(verifyDto.getCode());
-        weChatService.regist(weChatBindBo,userEntity);
+        String regist = weChatService.regist(weChatBindBo, userEntity);
         // login
-        return new WeChatResponseDTO();
+        return new WeChatResponseDTO(regist);
     }
 
 }

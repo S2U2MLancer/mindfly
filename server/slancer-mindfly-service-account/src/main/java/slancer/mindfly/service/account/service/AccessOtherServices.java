@@ -30,7 +30,7 @@ public class AccessOtherServices {
 				+ "&secret=" + thirdServerProperty.getSecret()
 				+ "&js_code=" + getOpenIdBO.getCode()
 				+ "&grant_type=" + thirdServerProperty.getGrantType();
-		WeChatOpenIdBO weChatOpenIdBO = null;
+		WeChatOpenIdBO weChatOpenIdBO = new WeChatOpenIdBO();
 		try {
 			log.info("invoke get openId from wechant");
 			ResponseEntity<String> responseEntity = restTemplate.exchange(url, HttpMethod.GET, new HttpEntity<>(headers),String.class);

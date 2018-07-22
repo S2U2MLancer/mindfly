@@ -19,6 +19,9 @@ import java.util.Date;
 
 import static org.junit.Assert.*;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.when;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.get;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -34,12 +37,13 @@ public class WeChatControllerTest extends AbS2u2mControllerTest {
         WeChatLoginDTO weChatLoginDTO = new WeChatLoginDTO();
         weChatLoginDTO.setCode("123");
         ObjectMapper objectMapper = new ObjectMapper();
-        MvcResult rst = mockMvc.perform(post("login")
-        .content(objectMapper.writeValueAsString(weChatLoginDTO)))
+        MvcResult rst = mockMvc.perform(post("/weChat/login")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(weChatLoginDTO)))
                 .andExpect(status().isOk())
                 .andDo(documentAPI("wechatLogin"))
                 .andReturn();
-        given(weChatService.login("123")).willReturn("123456");
+        doReturn(token).when(weChatService).login(any(String.class));
 
         WeChatResponseDTO weChatResponseDTO = this.convertResponseToObject(rst,WeChatResponseDTO.class);
         assertEquals(token,weChatResponseDTO.getToken());
@@ -58,12 +62,13 @@ public class WeChatControllerTest extends AbS2u2mControllerTest {
                 .setPassword("123456");
         BindWeChatBO bindWeChatBO = new BindWeChatBO();
         UserEntity userEntity = new UserEntity();
+        doReturn(token).when(weChatService).regist(any(BindWeChatBO.class), any(UserEntity.class));
 
         //action
         ObjectMapper objectMapper = new ObjectMapper();
-        given(weChatService.regist(bindWeChatBO,userEntity)).willReturn(token);
-        MvcResult rst = mockMvc.perform(post("regist")
-        .content(objectMapper.writeValueAsString(weChatRegistDTO)))
+        MvcResult rst = mockMvc.perform(post("/weChat/regist")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(weChatRegistDTO)))
                 .andExpect(status().isOk())
                 .andDo(documentAPI("wechatRegist"))
                 .andReturn();

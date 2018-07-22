@@ -5,7 +5,7 @@ import slancer.mindfly.service.account.cache.OpenIdCache;
 import slancer.mindfly.service.account.dao.common.RedisDao;
 
 @Repository
-public class OpenIdDao extends RedisDao<String,OpenIdCache>{
+public class OpenIdDao extends RedisDao{
 
     @Override
     protected String uniquePK(String s) {
