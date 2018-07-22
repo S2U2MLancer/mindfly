@@ -37,13 +37,14 @@ public class WeChatControllerTest extends AbS2u2mControllerTest {
         WeChatLoginDTO weChatLoginDTO = new WeChatLoginDTO();
         weChatLoginDTO.setCode("123");
         ObjectMapper objectMapper = new ObjectMapper();
+        doReturn(token).when(weChatService).login(any(String.class));
         MvcResult rst = mockMvc.perform(post("/weChat/login")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(weChatLoginDTO)))
                 .andExpect(status().isOk())
                 .andDo(documentAPI("wechatLogin"))
                 .andReturn();
-        doReturn(token).when(weChatService).login(any(String.class));
+
 
         WeChatResponseDTO weChatResponseDTO = this.convertResponseToObject(rst,WeChatResponseDTO.class);
         assertEquals(token,weChatResponseDTO.getToken());
