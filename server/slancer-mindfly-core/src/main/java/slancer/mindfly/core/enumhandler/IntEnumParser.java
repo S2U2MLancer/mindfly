@@ -17,7 +17,7 @@ public class IntEnumParser {
      * @param value enum int value
      * @param etClass class of Enum Type
      * @param <ET> Enum Type implement IIntEnum
-     * @return
+     * @return   'Enum convert from value '
      */
     public static <ET extends Enum<ET> & IIntEnum> ET convert(
             int value, Class<ET> etClass) {
