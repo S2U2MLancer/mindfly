@@ -6,9 +6,15 @@ import slancer.mindfly.service.account.enums.GenderEnum;
 
 import java.util.Date;
 
-@Setter
 @Getter
-public class BindWeChatBO {
-    private String openId;
-    private String userId;
+@Setter
+public class WeChatRegistBO {
+
+    private String code;
+
+    private String nickName;
+
+    private GenderEnum gender = GenderEnum.Unknown;
+
+    private Date birthday;
 }

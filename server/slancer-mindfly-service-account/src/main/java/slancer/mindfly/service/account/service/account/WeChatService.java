@@ -16,6 +16,7 @@ import slancer.mindfly.service.account.dao.WeChatAccountDAO;
 import slancer.mindfly.service.account.entity.UserEntity;
 import slancer.mindfly.service.account.service.AccessOtherServices;
 import slancer.mindfly.service.account.service.account.bo.BindWeChatBO;
+import slancer.mindfly.service.account.service.account.bo.WeChatRegistBO;
 
 import java.time.Instant;
 import java.util.Date;
@@ -51,7 +52,7 @@ public class WeChatService {
         return userTokenAuth.getToken();
     }
 
-    public String regist(BindWeChatBO bindBo, UserEntity userEntity) {
+    public String regist(WeChatRegistBO bindBo, UserEntity userEntity) {
 
         String openId = null;
         OpenIdCache openIdCache = new OpenIdCache(openIdDao.get(bindBo.getCode()));

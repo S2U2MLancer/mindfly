@@ -13,6 +13,7 @@ import slancer.mindfly.service.account.entity.UserEntity;
 import slancer.mindfly.service.account.enums.GenderEnum;
 import slancer.mindfly.service.account.service.account.WeChatService;
 import slancer.mindfly.service.account.service.account.bo.BindWeChatBO;
+import slancer.mindfly.service.account.service.account.bo.WeChatRegistBO;
 import slancer.mindfly.test.AbS2u2mControllerTest;
 
 import java.util.Date;
@@ -61,9 +62,9 @@ public class WeChatControllerTest extends AbS2u2mControllerTest {
                 .setGender(GenderEnum.Female)
                 .setNickName("123456")
                 .setPassword("123456");
-        BindWeChatBO bindWeChatBO = new BindWeChatBO();
+        WeChatRegistBO weChatRegistBO = new WeChatRegistBO();
         UserEntity userEntity = new UserEntity();
-        doReturn(token).when(weChatService).regist(any(BindWeChatBO.class), any(UserEntity.class));
+        doReturn(token).when(weChatService).regist(any(WeChatRegistBO.class), any(UserEntity.class));
 
         //action
         ObjectMapper objectMapper = new ObjectMapper();
