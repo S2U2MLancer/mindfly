@@ -56,7 +56,7 @@ public class WeChatControllerTest extends AbS2u2mControllerTest {
         //prepare
         WeChatRegistDTO weChatRegistDTO = new WeChatRegistDTO();
         weChatRegistDTO.setBirthday(new Date())
-                .setCode("123")
+                .setCode("033DYZiv1DeEKa0i9ufv1T31jv1DYZiS")
                 .setGender(GenderEnum.Female)
                 .setNickName("123456")
                 .setPassword("123456");
@@ -66,7 +66,7 @@ public class WeChatControllerTest extends AbS2u2mControllerTest {
 
         //action
         ObjectMapper objectMapper = new ObjectMapper();
-        MvcResult rst = mockMvc.perform(post("/account/weChat/regist")
+        MvcResult rst = mockMvc.perform(post("/account/weChat/register")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(weChatRegistDTO)))
                 .andExpect(status().isOk())

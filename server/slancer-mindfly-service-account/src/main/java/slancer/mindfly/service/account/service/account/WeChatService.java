@@ -41,13 +41,13 @@ public class WeChatService {
         WeChatGetOpenIdBO getOpenIdBO = new WeChatGetOpenIdBO(code);
         WeChatOpenIdBO weChatOpenIdBO = accessOtherServices.weChatLogin(getOpenIdBO);
         UserTokenAuth userTokenAuth = null;
-        UserEntity userEntity = weChatAccountDAO.getById(weChatOpenIdBO.getOpenId());
+        UserEntity userEntity = weChatAccountDAO.getById(weChatOpenIdBO.getOpenid());
         if (userEntity != null) {
             userTokenAuth = new UserTokenAuth(userEntity.getId());
             return userTokenAuth.getToken();
-        }  else if (null != weChatOpenIdBO.getOpenId()) {
+        }  else if (null != weChatOpenIdBO.getOpenid()) {
             OpenIdCache openIdCache = new OpenIdCache();
-            openIdCache.setOpenId(weChatOpenIdBO.getOpenId());
+            openIdCache.setOpenId(weChatOpenIdBO.getOpenid());
             openIdDao.insert(code,openIdCache.getOpenId(),1L, TimeUnit.DAYS);
             throw ExceptionBuilder.build(AccountErrorCodeEnum.UserNotExisted,
                     String.format("User Not Existed"));
@@ -64,7 +64,7 @@ public class WeChatService {
             WeChatGetOpenIdBO openIdBO = new WeChatGetOpenIdBO();
             openIdBO.setCode(bindBo.getCode());
             WeChatOpenIdBO weChatOpenIdBO = accessOtherServices.weChatLogin(openIdBO);
-            openId = weChatOpenIdBO.getOpenId();
+            openId = weChatOpenIdBO.getOpenid();
         } else {
             openId = openIdCache.getOpenId();
         }

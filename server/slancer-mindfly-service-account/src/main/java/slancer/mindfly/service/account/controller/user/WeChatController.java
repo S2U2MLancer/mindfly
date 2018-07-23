@@ -10,11 +10,11 @@ import slancer.mindfly.service.account.controller.user.dto.WeChatRegistDTO;
 import slancer.mindfly.service.account.controller.user.dto.WeChatResponseDTO;
 import slancer.mindfly.service.account.entity.UserEntity;
 import slancer.mindfly.service.account.service.account.WeChatService;
-import slancer.mindfly.service.account.service.account.bo.BindWeChatBO;
 import slancer.mindfly.service.account.service.account.bo.WeChatRegistBO;
 
 @RestController
-@RequestMapping("/account/weChat")
+//@RequestMapping("/account/weChat")
+@RequestMapping("/weChat")
 public class WeChatController {
 
     @Autowired
@@ -22,17 +22,17 @@ public class WeChatController {
 
     @S2u2mResponseBody
     @ApiOperation(value = "登录")
-    @GetMapping("/login/{code}")
-    public WeChatResponseDTO login(@PathVariable String code) {
+    @GetMapping("/login")
+    public WeChatResponseDTO login(WeChatLoginDTO weChatLoginDTO) {
 
-        String login = weChatService.login(code);
+        String login = weChatService.login(weChatLoginDTO.getCode());
         return new WeChatResponseDTO(login);
     }
 
 
     @S2u2mResponseBody
     @ApiOperation(value = "微信注册")
-    @PostMapping("/regist")
+    @PostMapping("/register")
     public WeChatResponseDTO weChatRegist(@RequestBody WeChatRegistDTO verifyDto) {
         UserEntity userEntity = new UserEntity();
         userEntity.setBirthday(verifyDto.getBirthday())

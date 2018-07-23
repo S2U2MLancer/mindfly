@@ -1,6 +1,6 @@
 package slancer.mindfly.service.account.service;
 
-import com.alibaba.fastjson.JSONObject;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
@@ -19,6 +19,8 @@ public class AccessOtherServices {
 
     @Autowired
     ThirdServerProperty thirdServerProperty;
+    @Autowired
+    private ObjectMapper objectMapper;
 
     public WeChatOpenIdBO weChatLogin(WeChatGetOpenIdBO getOpenIdBO) {
         RestTemplate restTemplate = new RestTemplate();
@@ -37,16 +39,12 @@ public class AccessOtherServices {
                             new HttpEntity<>(headers),
                             String.class);
             log.info("invoke get openId from wechant [" + responseEntity.getBody());
-            JSONObject jsonpObject = JSONObject.parseObject(responseEntity.getBody());
             if (responseEntity.getStatusCode().equals(HttpStatus.OK)) {
-                WeChatOpenIdBO weChatOpenId = new WeChatOpenIdBO();
-                weChatOpenId.setOpenId(jsonpObject.getString("openid"));
-                weChatOpenId.setSession_key(jsonpObject.getString("session_key"));
-                weChatOpenId.setUnionid(jsonpObject.getString("unionid"));
-                return weChatOpenId;
+                weChatOpenIdBO =  objectMapper.readValue(responseEntity.getBody(),WeChatOpenIdBO.class);
+                return weChatOpenIdBO;
             }
 
-        } catch (RestClientException e) {
+        } catch (Exception e) {
             log.info(e.getMessage(), e);
         }
         return weChatOpenIdBO;

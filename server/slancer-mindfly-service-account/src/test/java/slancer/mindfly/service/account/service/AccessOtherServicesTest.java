@@ -25,13 +25,13 @@ public class AccessOtherServicesTest extends AbS2u2mSpringTest {
         WeChatGetOpenIdBO weChatGetOpenIdBO = new WeChatGetOpenIdBO();
         thirdServerProperty.getAppId();
         thirdServerProperty.getGrantType();
-        weChatGetOpenIdBO.setCode("124");
+        weChatGetOpenIdBO.setCode("033DYZiv1DeEKa0i9ufv1T31jv1DYZiS");
         thirdServerProperty.getSecret();
 
         //action
         WeChatOpenIdBO weChatOpenIdBO = accessOtherServices.weChatLogin(weChatGetOpenIdBO);
         //verify
-            assertThat(weChatOpenIdBO.getOpenId()).isNotBlank();
+            assertThat(weChatOpenIdBO.getOpenid()).isNotBlank();
 
 
 

@@ -10,7 +10,7 @@ import lombok.experimental.Accessors;
 @NoArgsConstructor
 @Accessors(chain = true)
 public class WeChatOpenIdBO {
-    private String openId;
+    private String openid;
     private String session_key;
     private String unionid;
 }
