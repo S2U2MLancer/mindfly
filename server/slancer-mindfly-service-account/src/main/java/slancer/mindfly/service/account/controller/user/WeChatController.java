@@ -14,7 +14,7 @@ import slancer.mindfly.service.account.service.account.bo.WeChatRegistBO;
 
 @RestController
 //@RequestMapping("/account/weChat")
-@RequestMapping("/weChat")
+@RequestMapping("account/weChat")
 public class WeChatController {
 
     @Autowired
@@ -22,8 +22,8 @@ public class WeChatController {
 
     @S2u2mResponseBody
     @ApiOperation(value = "登录")
-    @GetMapping("/login")
-    public WeChatResponseDTO login(WeChatLoginDTO weChatLoginDTO) {
+    @PostMapping("/login")
+    public WeChatResponseDTO login(@RequestBody WeChatLoginDTO weChatLoginDTO) {
 
         String login = weChatService.login(weChatLoginDTO.getCode());
         return new WeChatResponseDTO(login);
@@ -37,8 +37,7 @@ public class WeChatController {
         UserEntity userEntity = new UserEntity();
         userEntity.setBirthday(verifyDto.getBirthday())
                 .setGender(verifyDto.getGender())
-                .setNickName(verifyDto.getNickName())
-                .setPassword(verifyDto.getPassword());
+                .setNickName(verifyDto.getNickName()) ;
         WeChatRegistBO weChatRegistBO = new WeChatRegistBO();
         weChatRegistBO.setCode(verifyDto.getCode());
         String regist = weChatService.regist(weChatRegistBO, userEntity);

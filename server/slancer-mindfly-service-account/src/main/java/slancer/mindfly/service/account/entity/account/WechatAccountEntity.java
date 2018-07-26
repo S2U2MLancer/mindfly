@@ -18,6 +18,6 @@ import java.util.Date;
 public class WechatAccountEntity {
     private String openId;
     private String userId;
-    private Date createDate;
+    private Date createTime;
 
 }

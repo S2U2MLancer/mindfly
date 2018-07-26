@@ -36,7 +36,7 @@ public class WeChatControllerTest extends AbS2u2mControllerTest {
     @Test
     public void login() throws Exception {
         String code = "123456";
-        String url = "/account/weChat/login" +"/" + code;
+        String url = "/account/weChat/login";
         doReturn(token).when(weChatService).login(any(String.class));
         MvcResult rst = mockMvc.perform(get(url)
                 .contentType(MediaType.APPLICATION_JSON))
@@ -58,8 +58,7 @@ public class WeChatControllerTest extends AbS2u2mControllerTest {
         weChatRegistDTO.setBirthday(new Date())
                 .setCode("033DYZiv1DeEKa0i9ufv1T31jv1DYZiS")
                 .setGender(GenderEnum.Female)
-                .setNickName("123456")
-                .setPassword("123456");
+                .setNickName("123456") ;
         WeChatRegistBO weChatRegistBO = new WeChatRegistBO();
         UserEntity userEntity = new UserEntity();
         doReturn(token).when(weChatService).regist(any(WeChatRegistBO.class), any(UserEntity.class));

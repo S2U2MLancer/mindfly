@@ -18,8 +18,6 @@ import slancer.mindfly.service.account.enums.GenderEnum;
 public class WeChatRegistDTO {
     @ApiModelProperty("code")
     private String code;
-    @ApiModelProperty("密码")
-    private String password;
     @ApiModelProperty("昵称")
     private String nickName;
     @ApiModelProperty("性别")

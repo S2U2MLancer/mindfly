@@ -54,6 +54,7 @@ public class WeChatService {
         }
         throw ExceptionBuilder.build(AccountErrorCodeEnum.GetOpenIdFailed,
                 String.format("Get OpenId Failed by code %s",code));
+       
     }
 
     public String regist(WeChatRegistBO bindBo, UserEntity userEntity) {
@@ -77,7 +78,7 @@ public class WeChatService {
         WechatAccountEntity wechatAccountEntity = new WechatAccountEntity()
                 .setOpenId(openId)
                 .setUserId(saved.getId())
-                .setCreateDate(Date.from(Instant.now()));
+                .setCreateTime(Date.from(Instant.now()));
 
         weChatAccountDAO.create(wechatAccountEntity);
         UserTokenAuth userTokenAuth = new UserTokenAuth(userEntity.getId());
