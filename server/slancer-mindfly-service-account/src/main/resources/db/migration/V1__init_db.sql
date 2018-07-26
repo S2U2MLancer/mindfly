@@ -2,14 +2,14 @@
 --create database account_service default charset=utf8mb4;
 
 CREATE TABLE IF NOT EXISTS `user_info` (
-  `id` unsigned bigint(20)  NOT NULL,
+  `id`  bigint(20)  NOT NULL,
   `password` varchar(100) not null,
   `nick_name` varchar(100) NOT NULL,
-  `gender` unsigned tinyint not NULL default 0,
-  `birthday` datetime NULL,
+  `gender`  tinyint not NULL default 0,
+  `birthday` datetime DEFAULT NULL,
   `create_time` datetime NOT NULL,
-  `update_time` datetime NULL,
-  `delete_flag` unsigned tinyint NOT NULL default 0,
+  `update_time` datetime DEFAULT NULL,
+  `delete_flag`  tinyint NOT NULL default 0,
   PRIMARY KEY (`id`)
 ) Engine=InnoDB default charset=utf8mb4;
 

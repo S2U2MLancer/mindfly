@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="slancer.mindfly.service.account.dao.WeChatAccountDAO">
     <resultMap id="WeChatAccountEntityMap" type="WechatAccountEntity">
-        <id column="open_id" jdbcType="BIGINT" property="openId"/>
-        <result column="user_id" jdbcType="VARCHAR" property="userId"/>
+        <id column="open_id" jdbcType="VARCHAR" property="openId"/>
+        <result column="user_id" jdbcType="BIGINT" property="userId"/>
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
     </resultMap>
 
@@ -12,17 +12,23 @@
     </sql>
 
     <insert id="create" parameterType="WechatAccountEntity">
-        insert into user_info (
+        insert into wechat_account (
         <include refid="all_fields"/>
         ) values (
         #{openId}, #{userId}, #{createTime}
         )
     </insert>
 
-    <select id="getById" resultMap="WeChatAccountEntityMap">
-        select <include refid="all_fields" />
-        from user_info
+    <sql id="userInfo">
+        id, password, nick_name, gender, birthday,
+        ui.create_time, ui.update_time, ui.delete_flag
+    </sql>
+
+    <select id="getById" resultType="UserEntity">
+        select <include refid="userInfo" />
+        from user_info ui,wechat_account wa
         where open_id=#{openId}
+        and  ui.id = wa.user_id
     </select>
     
 </mapper>
