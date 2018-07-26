@@ -17,6 +17,7 @@ import slancer.mindfly.service.account.entity.UserEntity;
 import slancer.mindfly.service.account.service.AccessOtherServices;
 import slancer.mindfly.service.account.service.account.bo.BindWeChatBO;
 import slancer.mindfly.service.account.service.account.bo.WeChatRegistBO;
+import slancer.mindfly.service.account.utils.password.PasswordGeneralUtil;
 
 import java.time.Instant;
 import java.util.Date;
@@ -34,8 +35,11 @@ public class WeChatService {
     UserService userService;
     @Autowired
     OpenIdDao openIdDao;
+    @Autowired
+    PasswordGeneralUtil passwordGeneralUtil;
 
 
+    
     public String login(String code) {
 
         WeChatGetOpenIdBO getOpenIdBO = new WeChatGetOpenIdBO(code);
@@ -74,6 +78,8 @@ public class WeChatService {
             throw ExceptionBuilder.build(AccountErrorCodeEnum.WechatRegisted,
                     String.format("wechant account [%s] has existed", openId));
         }
+        String password = passwordGeneralUtil.getPassword();
+        userEntity.setPassword(password);
         UserEntity saved = userService.create(userEntity);
         WechatAccountEntity wechatAccountEntity = new WechatAccountEntity()
                 .setOpenId(openId)
